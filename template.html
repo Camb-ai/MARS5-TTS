@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>knn-vc demo page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0;
+            padding: 0px 20px 20px 20px;
+        }
+
+
+        table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Voice Conversion With Just Nearest Neighbors</h1>
+    <p>
+        <b>Authors:</b>
+        Anonymous submission to INTERSPEECH 2023
+    </p>
+    <p>
+        <b>Abstract:</b>
+        Any-to-any voice conversion aims to transform source speech into a target voice with just a few examples of the
+        target speaker as a reference.
+        Recent methods produce convincing conversions, but at the cost of increased complexity - making results
+        difficult to reproduce and build on.
+        Instead, we keep it simple.
+        We propose k-nearest neighbors voice conversion (kNN-VC): a straightforward yet effective method for any-to-any
+        conversion.
+        First, we extract self-supervised representations of the source and reference speech.
+        To convert to the target speaker, we replace each frame of the source representation with its nearest neighbor
+        in the reference.
+        Finally, a pretrained vocoder synthesizes audio from the converted representation.
+        Objective and subjective evaluations show that kNN-VC improves speaker similarity with similar intelligibility
+        scores to existing methods.
+    </p>
+
+    <p><b>If you are having trouble listening to the audio, please refresh the page.</b></p>
+
+    <h2>Samples from kNN-VC</h2>
+    <p>
+        In this section, we present samples from kNN-VC with unseen source and target speakers from
+        <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech</a>.
+    </p>
+
+    {{#unseen}}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="6" style="border-bottom:1px solid #D3D3D3;">
+                    targets
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                {{#target}}
+                <th>
+                    {{name}}
+                </th>
+                {{/target}}
+            </tr>
+            <tr>
+                <th>
+                    source
+                </th>
+                {{#target}}
+                <th>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </th>
+                {{/target}}
+            </tr>
+            {{#converted}}
+            <tr>
+                {{#.}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/.}}
+            </tr>
+            {{/converted}}
+        </tbody>
+    </table>
+    {{/unseen}}
+    <br>
+
+    <h2>Comparison to other methods</h2>
+    <p>
+        In this section, we compare kNN-VC against
+        <a href="https://github.com/Wendison/VQMIVC" target="_blank" rel="noopener noreferrer">VQMIVC</a>,
+        <a href="https://github.com/Edresson/YourTTS" target="_blank" rel="noopener noreferrer">YourTTS</a>, and
+        <a href="https://github.com/OlaWod/FreeVC" target="_blank" rel="noopener noreferrer">FreeVC</a>.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>source</th>
+                <th>target</th>
+                <th>kNN-VC</th>
+                <th>VQMIVC</th>
+                <th>YourTTS</th>
+                <th>FreeVC</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#comparison}}
+            <tr>
+                {{#.}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/.}}
+            </tr>
+            {{/comparison}}
+        </tbody>
+    </table>
+    <br>
+
+</body>
+
+</html>

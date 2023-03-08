@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>knn-vc demo page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0;
+            padding: 0px 20px 20px 20px;
+        }
+
+
+        table {
+            display: block;
+            width: 100%;
+            border-collapse: collapse;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Voice Conversion With Just Nearest Neighbors</h1>
+    <p>
+        <b>Authors:</b>
+        Anonymous submission to INTERSPEECH 2023
+    </p>
+    <p>
+        <b>Abstract:</b>
+        Any-to-any voice conversion aims to transform source speech into a target voice with just a few examples of the
+        target speaker as a reference.
+        Recent methods produce convincing conversions, but at the cost of increased complexity - making results
+        difficult to reproduce and build on.
+        Instead, we keep it simple.
+        We propose k-nearest neighbors voice conversion (kNN-VC): a straightforward yet effective method for any-to-any
+        conversion.
+        First, we extract self-supervised representations of the source and reference speech.
+        To convert to the target speaker, we replace each frame of the source representation with its nearest neighbor
+        in the reference.
+        Finally, a pretrained vocoder synthesizes audio from the converted representation.
+        Objective and subjective evaluations show that kNN-VC improves speaker similarity with similar intelligibility
+        scores to existing methods.
+    </p>
+
+    <p><b>If you are having trouble listening to the audio, please refresh the page.</b></p>
+
+    <h2>Samples from kNN-VC</h2>
+    <p>
+        In this section, we present samples from kNN-VC with unseen source and target speakers from
+        <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech</a>.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="6" style="border-bottom:1px solid #D3D3D3;">
+                    targets
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                <th>
+                    2300
+                </th>
+                <th>
+                    237
+                </th>
+                <th>
+                    260
+                </th>
+                <th>
+                    1284
+                </th>
+                <th>
+                    1089
+                </th>
+                <th>
+                    4507
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    source
+                </th>
+                <th>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=17x7C-nnUhgSbFKM9ON2mu6olmn9y_-nb"></audio>
+                </th>
+                <th>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Se7wHUC3tVg_Z4pyR2qC97lEW51ievih"></audio>
+                </th>
+                <th>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1xEnB7KHF_QBy57kFHF8ACe7_ZwpF36wC"></audio>
+                </th>
+                <th>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1zLqaXhzPuK89ENFQAugI6sVYp9U7dgta"></audio>
+                </th>
+                <th>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1oqxmhu8pwxBtpl9b8rcMFsovrBHaBLoA"></audio>
+                </th>
+                <th>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1bnl3O-r8yxtgD5Baxgjqo79NBIrJjpNh"></audio>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="5105" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Usj4XTjjvyrDnOesEsDJAzdAHK4Wg6z1"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1DAnfOVs1SAgpWtaZO_znhH1YuuvNwBro"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=12cRXUh73YhAQxTI_7ODTumYHA45gyec4"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1cmd7nvF7cUj0TYmbvOvQnSbEaZNONtty"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1n_GLQARR93ZBDK9awkr0oZLpRAooGd_-"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1qwMmiDl4CVqtkn7mt--oMOiX4NZqzk1F"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1l5l-XtmkIyBPuGHO46oZTpG5uyXEzk-7"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="5683" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1IcoWTUtJzLWmfWNFnvlA8idH6UfwaGil"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1xURx6rR9XB73wv_ajj1yq_1eLe-rEKiW"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1fdpoftYCi8WTSF_sBB4QE4bXkSN6Ankf"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1ewpIFk_q_-JBHWf6f4LMLFByKUTjwEw5"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1ZaIzRiWvpdodtnVsSIr-nbUOQNj7Gkrb"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1VIeZdORTQlzlVEVsakjvJCcGrIwqMWiG"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1ZfjxxX4_dtrKcp_JCZqzckBhWTBGdE2T"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="7729" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1rpl0Yc1Jfi4I1Wx3F-z17p7oHrc4L63M"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1fWAUq1X3NOGo281mOQkVWi3k3RO6P9Yn"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1DrW-GXrPEKiNcgDJQGlEYioml4ZWeUvV"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1jjMILLTrBomRG_nwSnIM2vTL6Dz7y3f6"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=19dnDLZc9Nrl-fCOt0ZnEwiL66ygeeQBm"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1yWz15LDVg0VBuDIpPqCLInE5AKbLhUMy"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1UwENEoAUdz263SXu7muHP_rxFrY2CSnq"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="3729" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1KT3F3jrz5fJxJl2O1olw_SeoH0sHzA3z"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1xV-sn8L_4150l_if5iAWutbBc9Z_ZD0q"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1mAco8sN8NHi2jyhFr9hEynSfnruR6M1Y"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1jxFYA85_Xw0o4Tt9J-J7tqCDgZKhPqok"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1-7tGIIkRGS6fiDfXH94MEywhY1WlTMVG"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1aGNb7EmZE8daJ4YSPG0cDYKWvzHTsve7"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1ZQE0FJq5yawCYgNDKzkqcOOMPQEYQxCi"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="7021" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1mTxPN0BeXd33B6Ru0tJogjSmJEE-ss5J"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1H6fAji7BqxfolFnIYvpPJJspJFDLhhnI"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1nhLvJE_U-sQkETeAYmz_Pl0hU3cvzSfH"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1HdKePTtC0NAEJKnlNa3n3lh4IRbPpN2O"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1McQq7JaKj_lwq0_r8QTztl3v8LqIF7jK"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1VKZSE05ZHmVpzD6hHVm167kBJu7AT74z"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Zp6-lYqXo3HE97jcQYY2OI5I1yJNf1bE"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="4446" controls preload src="https://drive.google.com/uc?export=preview&amp;id=14le5gg-u81ik3donoE0Urdnya1BNP6B4"></audio>
+                </td>
+                <td>
+                    <audio name="2300" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1X3kij-FdMcRCINFb1ru6TDd4reuTUtQZ"></audio>
+                </td>
+                <td>
+                    <audio name="237" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1VPWucjfWmUFXSDH3cNZjWyRRWfXPOGxC"></audio>
+                </td>
+                <td>
+                    <audio name="260" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1tzpfjVnEyaRPmiOpvX5o4bDR3v4legNm"></audio>
+                </td>
+                <td>
+                    <audio name="1284" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1kjwIdMAK3onOBqPNPvecy_kvi5gscKF9"></audio>
+                </td>
+                <td>
+                    <audio name="1089" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1vvJOEU4xd5cMSfUz1O-U51Pds4FM1UYP"></audio>
+                </td>
+                <td>
+                    <audio name="4507" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1h0wK8LGCJsFHYcmXpqsNooe8FJn5yTTd"></audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <h2>Comparison to other methods</h2>
+    <p>
+        In this section, we compare kNN-VC against
+        <a href="https://github.com/Wendison/VQMIVC" target="_blank" rel="noopener noreferrer">VQMIVC</a>,
+        <a href="https://github.com/Edresson/YourTTS" target="_blank" rel="noopener noreferrer">YourTTS</a>, and
+        <a href="https://github.com/OlaWod/FreeVC" target="_blank" rel="noopener noreferrer">FreeVC</a>.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>source</th>
+                <th>target</th>
+                <th>kNN-VC</th>
+                <th>VQMIVC</th>
+                <th>YourTTS</th>
+                <th>FreeVC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=13oFic6qiKndIAOS0q99rnzja947SegUa"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Xmp-ngXQpXLxUhCjwIzzXBV2Tn2xcWoJ"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1izfjmXmJaauuxOtjPY5_RlnV9clnKHwa"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1IVaJ49J-Y2fbxARvgHJbJszsAW9kxBrf"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1vNT06i35PfF3k9AXHh8OfBCAQV2ks9Q7"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1fTOAZSUE_NZXQ8f9XcdEhUaGkzNu70O1"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1pl00Z8ZKAMNV_b7dX4nxGgwiqNpH4Tl1"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1_NaKVWMLnEUrG7mLbLAvZlGm_sB3JoNG"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1kID3Qtdu2V8Cg5JImMs-9AhQojRJFY6r"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1MrmD46Ylm3x44b4UHHxGFwin5nYRK4qM"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Z6ivnAI3jHQj_Z9AbtI4ElsN8xChefmk"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1NGwPQy2M9dAsyFMhpHfm-InX0TvRv5wz"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1KDMhR3SU8lNkTGcmwKOpZMjtHDQtg6gn"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1PNjib31dalIBgoCyenmZIP5tyKQGMgX1"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1jVHLTU7XM9sYR8Y545WvMCfmEzTADhXd"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1fiM0GDXDchBeQvJjM8-8bomsI2zEnWSk"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Tdb0mRVqHZU5Y65YbXrjIYpbCFR7T8hf"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Kp1TovsQpbmVq8zCqH6zwLJP35LZmrOo"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1WpOOexgqLwrGWCgOwYSv-5IKs-PzYPAk"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=11f9Vrfm1r7piAkG5mdjrA5oxbdUEE3DJ"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1SBGYxTdIgAJGKrkPfNtV_imt1s9R3mVJ"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1_rcPkbZQHUhJhA0vSVS3Jvns-oTUZlue"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1nhlzEm3Qp4CHq_ESWxsWCq9y9y-9E06G"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1zbzRmvuE8NbJU83AArswUvi7twgAKXsm"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1-B1hKeky2ecW0sfU8TQ2xWiOtJXQGO6g"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1cnLOlkbNkoi4h5JI2tDrwYdq9vnm4QLs"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1x2jJys2Y0cwKSeYpmZSaGiEopHAUivvq"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1s0PNweavmTbDSH0CGSXTTY3VuKvYNADB"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=14kN8bw2L8ciM-zPCZlBszEArZdNUkbbz"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1jtgzwsnFWl2ijkNd8Ccj_vlPJu4IGzgg"></audio>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1iTktTVpJ8yKJkVYLn5L2_WRZCUirCE36"></audio>
+                </td>
+                <td>
+                    <audio name="target" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1wApUcQRim2XBTG0KrjuizknJ4eRcgL-Z"></audio>
+                </td>
+                <td>
+                    <audio name="knn-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1pyKDukut-sfVUti1u555uV1-HkaEM0xX"></audio>
+                </td>
+                <td>
+                    <audio name="vqmivc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1DzqPg_a9ZSNNxOgArYAMTDoqEpC1-6J9"></audio>
+                </td>
+                <td>
+                    <audio name="your-tts" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1EWdQt5nUHvtyIZQa17jkYXdpYEQgwWfX"></audio>
+                </td>
+                <td>
+                    <audio name="free-vc" controls preload src="https://drive.google.com/uc?export=preview&amp;id=13m9Ua214JirSa3n4P-9toW9pfVn7NgM5"></audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+</body>
+
+</html>
