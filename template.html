@@ -133,6 +133,55 @@
     </table>
     <br>
 
+    <h2>Ablations</h2>
+    <p>
+        In this section, we investigate the effect of target data size and prematched training.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="min-width: 120px;">prematched</th>
+                <th>source</th>
+                <th>5 secs</th>
+                <th>10 secs</th>
+                <th>30 secs</th>
+                <th>1 min</th>
+                <th>5 mins</th>
+                <th>8 mins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#ablation}}
+            {{#noprematch}}
+            <tr>
+                <td align="center" style="min-width: 120px;">
+                    &#10007
+                </td>
+                {{#.}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/.}}
+            </tr>
+            {{/noprematch}}
+            {{#prematch}}
+            <tr>
+                <td align="center" style="min-width: 120px;">
+                    &#10003
+                </td>
+                {{#.}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/.}}
+            </tr>
+            {{/prematch}}
+            {{/ablation}}
+        </tbody>
+    </table>
+    <br>
+
 </body>
 
 </html>
