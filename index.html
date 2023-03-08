@@ -49,7 +49,14 @@
         scores to existing methods.
     </p>
 
-    <p><b>If you are having trouble listening to the audio, please refresh the page.</b></p>
+    <p>
+        Code and pretrained models are available <a href="https://github.com/interspeech2023blind/knn-vc"
+            target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+
+    <p>
+        <b>If you are having trouble listening to the audio, please refresh the page.</b>
+    </p>
 
     <h2>Samples from kNN-VC</h2>
     <p>
@@ -400,8 +407,20 @@
     <h2>Ablations</h2>
     <p>
         In this section, we investigate the effect of target data size and prematched training.
+        We convert to a single target speaker for all examples, varying the amount of data for the matching set.
     </p>
 
+    <table>
+        <thead>
+            <tr>
+                <th style="min-width: 85px;">target:</th>
+                <th>
+                    <audio name="2300" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=17x7C-nnUhgSbFKM9ON2mu6olmn9y_-nb"></audio>
+                </th>
+            </tr>
+        </thead>
+    </table>
     <table>
         <thead>
             <tr>
@@ -424,22 +443,22 @@
                     <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1oumksKrx_4wHBnwLKlUyBtVugvJjxeJi"></audio>
                 </td>
                 <td>
-                    <audio name="5secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1wazIXFs1UpH0pHuCaWDq1o2qL8U8DeKy"></audio>
+                    <audio name="5secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1c05Oq0UXeUHTxzDmRzJkjQ17M7Gcy2yD"></audio>
                 </td>
                 <td>
-                    <audio name="10secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1xzmuMqZtSDSOCTYUtSSHdv7YiIwaCS6G"></audio>
+                    <audio name="10secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=17T8mZ0UpXvaacZw5r_WRsJ8Hfjj_AzrZ"></audio>
                 </td>
                 <td>
-                    <audio name="30secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1kjcCtrPtl-jp706NiqE3gP-5xBSVoP6k"></audio>
+                    <audio name="30secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=16THHgQUQF-N3i2qKOqCZb-S-hMjgJkCc"></audio>
                 </td>
                 <td>
-                    <audio name="1min-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1zNzcElYScKCt1NmWEqERlrYBFlypt0Ht"></audio>
+                    <audio name="1min" controls preload src="https://drive.google.com/uc?export=preview&amp;id=11ZVZuTSR80OJaVS2-L69jLLFnZCj9nV-"></audio>
                 </td>
                 <td>
-                    <audio name="5mins-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=11HDlw-8GbWwGiKfS8rcVa2Is6WXmklrn"></audio>
+                    <audio name="5mins" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1DEM_O2my0hLT689IvCbiV5X7N2MOsOZJ"></audio>
                 </td>
                 <td>
-                    <audio name="8mins-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1ojZiyOVv_rEXdoty9AfHB2bGFkViGt3Y"></audio>
+                    <audio name="8mins" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1PwdDr8wJyrTQq6NpubESHazzBFq1adc2"></audio>
                 </td>
             </tr>
             <tr>
@@ -450,22 +469,22 @@
                     <audio name="source" controls preload src="https://drive.google.com/uc?export=preview&amp;id=15ItiXvEOHl2jdEqVYxrIozUgtpVqg6-O"></audio>
                 </td>
                 <td>
-                    <audio name="5secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1YT5RehCi_yy4PZ1kTsmLBLg4Sx6w0G0P"></audio>
+                    <audio name="5secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=12CSiauUgwbw1ydAwvmYyddHkR7g9WNj9"></audio>
                 </td>
                 <td>
-                    <audio name="10secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1WcTypRZ4_6BxQw97vMJnYf04mh9vBzEG"></audio>
+                    <audio name="10secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=14FrwETj9VKyGOo4THvadx5iYB50EN-08"></audio>
                 </td>
                 <td>
-                    <audio name="30secs-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1u_GZE1n-WsZDiRjKnvoHZMnaZri1aCWJ"></audio>
+                    <audio name="30secs" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1qi0iDfwEk1VceO4zOXmlUtR_cBtmGrfN"></audio>
                 </td>
                 <td>
-                    <audio name="1min-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1HAA1hZZ0KvC054v-cajmw_ax356-qywa"></audio>
+                    <audio name="1min" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1Q9Ss9hMZqahxsKCRB2QdwoC4TTVoC8ZR"></audio>
                 </td>
                 <td>
-                    <audio name="5mins-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1G_o0dDH3bsc5UXd8xPpmfHnk2eVXzvl6"></audio>
+                    <audio name="5mins" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1LFbUPQnJWp0IMnnJU1cuW96GKQE6z3Nm"></audio>
                 </td>
                 <td>
-                    <audio name="8mins-pre" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1d-aVoAvAuOEZ4VQcdZKc3RCcDR_-zoQZ"></audio>
+                    <audio name="8mins" controls preload src="https://drive.google.com/uc?export=preview&amp;id=1K_D2yChS-1KwFeJCoYxd7YxdihZtLqHA"></audio>
                 </td>
             </tr>
             <tr>
