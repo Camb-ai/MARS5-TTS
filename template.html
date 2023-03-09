@@ -201,6 +201,60 @@
     </table>
     <br>
 
+    <h2>Bonus stuff</h2>
+    <p>
+        In this section, we apply kNN-VC to unseen languages, whispered speech, and even non-speech sounds.
+        We hope to explore these areas more in future work.
+    </p>
+
+    <h4>Cross-lingual voice conversion</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th align="center" style="min-width: 120px;"></th>
+                <th>source</th>
+                <th>target</th>
+                <th>output</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#cross-lingual}}
+            <tr>
+                <td align="center" style="min-width: 120px;">
+                    es-de
+                </td>
+                {{#es-de}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/es-de}}
+            </tr>
+            <tr>
+                <td align="center" style="min-width: 120px;">
+                    de-ja
+                </td>
+                {{#de-ja}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/de-ja}}
+            </tr>
+            <tr>
+                <td align="center" style="min-width: 120px;">
+                    zh-es
+                </td>
+                {{#zh-es}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/zh-es}}
+            </tr>
+            {{/cross-lingual}}
+        </tbody>
+    </table>
+    <br>
+
 </body>
 
 </html>
