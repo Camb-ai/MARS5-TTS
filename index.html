@@ -23,6 +23,12 @@
             border-collapse: collapse;
             overflow: auto;
         }
+
+        hr {
+            height: 1px;
+            background-color: #D3D3D3;
+            border: none;
+        }
     </style>
 </head>
 
@@ -57,6 +63,8 @@
     <p>
         <b>If you are having trouble listening to the audio, please refresh the page.</b>
     </p>
+
+    <hr />
 
     <h2>Samples from kNN-VC</h2>
     <p>
@@ -260,6 +268,8 @@
     </table>
     <br>
 
+    <hr />
+
     <h2>Comparison to other methods</h2>
     <p>
         In this section, we compare kNN-VC against
@@ -404,6 +414,8 @@
     </table>
     <br>
 
+    <hr />
+
     <h2>Ablations</h2>
     <p>
         In this section, we investigate the effect of target data size and prematched training.
@@ -543,6 +555,8 @@
     </table>
     <br>
 
+    <hr />
+
     <h2>Bonus stuff</h2>
     <p>
         In this section, we apply kNN-VC to unseen languages, whispered speech, and even non-speech sounds.
@@ -613,7 +627,7 @@
 
     <h4>Whispered speech conversion</h4>
     <p>
-        For the whipsered examples, we use data from <a href="https://chains.ucd.ie/index.php" target="_blank"
+        For the whispered examples, we use data from <a href="https://chains.ucd.ie/index.php" target="_blank"
             rel="noopener noreferrer">CHAINS</a>.
     </p>
 
@@ -730,6 +744,84 @@
         </tbody>
     </table>
     <br>
+
+    <p>
+        We also convert a song to a whisper (including the drum beat):
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>source</th>
+                <th>output</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <audio name="creeper" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1khk-Cr-3UN8BDpaS23zY7hd4fLmm92ta"></audio>
+                </td>
+                <td>
+                    <audio name="creeper-whisper" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1RahSwoldG2t5u2mSBk6BiOdtGrIGvSZB"></audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>Dog-person conversion</h4>
+    <p>
+        To see how kNN-VC handles non-human sounds, we apply it to an audio clip of a barking dog.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>person</th>
+                <th>dog</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    source
+                </th>
+                <th>
+                    <audio name="person" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=15Qc719MNT3qPpitMaKYW3_opTrTQKnAr"></audio>
+                </th>
+                <th>
+                    <audio name="dog" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1KJEt01AmYSh9rMHj7BfXcTz1liWFJcFu"></audio>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="dog" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1KJEt01AmYSh9rMHj7BfXcTz1liWFJcFu"></audio>
+                </td>
+                <td>
+                    <audio name="dog-person" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1uM-SbUJJ7-cpw4VGgTHHvPi7uafaCSSz"></audio>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <audio name="person" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=15Qc719MNT3qPpitMaKYW3_opTrTQKnAr"></audio>
+                </td>
+                <td></td>
+                <td>
+                    <audio name="person-dog" controls preload
+                        src="https://drive.google.com/uc?export=preview&id=1wJeNacigzhaOj5OZWFoZnMZ1LNqTmPst"></audio>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
 
 </body>
 
