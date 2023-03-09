@@ -60,7 +60,7 @@
 
     <h2>Samples from kNN-VC</h2>
     <p>
-        In this section, we present samples from kNN-VC with unseen source and target speakers from
+        In this section, we apply kNN-VC to unseen source and target speakers from
         <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech</a>.
     </p>
 
@@ -208,6 +208,10 @@
     </p>
 
     <h4>Cross-lingual voice conversion</h4>
+    <p>
+        For the cross-lingual examples, we use data from <a href="https://github.com/Kyubyong/css10" target="_blank"
+            rel="noopener noreferrer">CSS10</a>.
+    </p>
 
     <table>
         <thead>
@@ -253,6 +257,55 @@
             {{/cross-lingual}}
         </tbody>
     </table>
+    <br>
+
+    <h4>Whispered speech conversion</h4>
+    <p>
+        For the whipsered examples, we use data from <a href="https://chains.ucd.ie/index.php" target="_blank"
+            rel="noopener noreferrer">CHAINS</a>.
+    </p>
+
+    {{#whispered}}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th colspan="6" style="border-bottom:1px solid #D3D3D3;">
+                    targets
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                {{#target}}
+                <th>
+                    {{name}}
+                </th>
+                {{/target}}
+            </tr>
+            <tr>
+                <th>
+                    source
+                </th>
+                {{#target}}
+                <th>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </th>
+                {{/target}}
+            </tr>
+            {{#converted}}
+            <tr>
+                {{#.}}
+                <td>
+                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                </td>
+                {{/.}}
+            </tr>
+            {{/converted}}
+        </tbody>
+    </table>
+    {{/whispered}}
     <br>
 
 </body>
