@@ -36,7 +36,15 @@
     <h1>Voice Conversion With Just Nearest Neighbors</h1>
     <p>
         <b>Authors:</b>
-        Anonymous submission to INTERSPEECH 2023
+        <a href="https://rf5.github.io/" target="_blank" rel="noopener noreferrer">Matthew Baas</a>,
+        <a href="https://scholar.google.com/citations?user=zCokvy8AAAAJ&hl=en&oi=ao" target="_blank"
+            rel="noopener noreferrer">Benjamin van Niekerk</a>,
+        <a href="https://www.kamperh.com/" target="_blank" rel="noopener noreferrer">Herman Kamper</a>
+    </p>
+    <p>
+        <b>Arxiv:</b>
+        <a href="https://arxiv.org/abs/2305.18975" target="_blank"
+            rel="noopener noreferrer">https://arxiv.org/abs/2305.18975</a>
     </p>
     <p>
         <b>Abstract:</b>
@@ -54,10 +62,15 @@
         Objective and subjective evaluations show that kNN-VC improves speaker similarity with similar intelligibility
         scores to existing methods.
     </p>
+    <p>
+        Abstract read by Sir David Attenborough:
+    </p>
+    <audio name="abstract-reader" controls preload
+        src="https://github.com/bshall/knn-vc/releases/download/v0.1/david-attenborough.wav"></audio>
 
     <p>
-        Code and pretrained models are available <a href="https://github.com/interspeech2023blind/knn-vc"
-            target="_blank" rel="noopener noreferrer">here</a>.
+        Code and pretrained models are available <a href="https://github.com/bshall/knn-vc" target="_blank"
+            rel="noopener noreferrer">here</a>.
     </p>
 
     <p>
@@ -97,7 +110,7 @@
                 </th>
                 {{#target}}
                 <th>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </th>
                 {{/target}}
             </tr>
@@ -105,7 +118,7 @@
             <tr>
                 {{#.}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/.}}
             </tr>
@@ -141,7 +154,7 @@
             <tr>
                 {{#.}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/.}}
             </tr>
@@ -163,8 +176,8 @@
             <tr>
                 <th style="min-width: 85px;">target:</th>
                 <th>
-                    <audio name="2300" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=17x7C-nnUhgSbFKM9ON2mu6olmn9y_-nb"></audio>
+                    <audio name="2300" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/2300.wav"></audio>
                 </th>
             </tr>
         </thead>
@@ -191,7 +204,7 @@
                 </td>
                 {{#.}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/.}}
             </tr>
@@ -203,7 +216,7 @@
                 </td>
                 {{#.}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/.}}
             </tr>
@@ -244,7 +257,7 @@
                 </td>
                 {{#es-de}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/es-de}}
             </tr>
@@ -254,7 +267,7 @@
                 </td>
                 {{#de-ja}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/de-ja}}
             </tr>
@@ -264,7 +277,7 @@
                 </td>
                 {{#zh-es}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/zh-es}}
             </tr>
@@ -304,7 +317,7 @@
                 </th>
                 {{#target}}
                 <th>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </th>
                 {{/target}}
             </tr>
@@ -312,7 +325,7 @@
             <tr>
                 {{#.}}
                 <td>
-                    <audio name="{{name}}" controls preload src="{{link}}"></audio>
+                    <audio name="{{name}}" controls preload="metadata" src="{{link}}"></audio>
                 </td>
                 {{/.}}
             </tr>
@@ -335,12 +348,12 @@
         <tbody>
             <tr>
                 <td>
-                    <audio name="creeper" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1khk-Cr-3UN8BDpaS23zY7hd4fLmm92ta"></audio>
+                    <audio name="creeper" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/creeper/creeper.wav"></audio>
                 </td>
                 <td>
-                    <audio name="creeper-whisper" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1RahSwoldG2t5u2mSBk6BiOdtGrIGvSZB"></audio>
+                    <audio name="creeper-whisper" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/creeper/creeper-whisper.wav"></audio>
                 </td>
             </tr>
         </tbody>
@@ -365,34 +378,34 @@
                     source
                 </th>
                 <th>
-                    <audio name="person" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=15Qc719MNT3qPpitMaKYW3_opTrTQKnAr"></audio>
+                    <audio name="person" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person.wav"></audio>
                 </th>
                 <th>
-                    <audio name="dog" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1KJEt01AmYSh9rMHj7BfXcTz1liWFJcFu"></audio>
+                    <audio name="dog" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog.wav"></audio>
                 </th>
             </tr>
             <tr>
                 <td>
-                    <audio name="dog" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1KJEt01AmYSh9rMHj7BfXcTz1liWFJcFu"></audio>
+                    <audio name="dog" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog.wav"></audio>
                 </td>
                 <td>
-                    <audio name="dog-person" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1uM-SbUJJ7-cpw4VGgTHHvPi7uafaCSSz"></audio>
+                    <audio name="dog-person" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog-person.wav"></audio>
                 </td>
                 <td></td>
             </tr>
             <tr>
                 <td>
-                    <audio name="person" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=15Qc719MNT3qPpitMaKYW3_opTrTQKnAr"></audio>
+                    <audio name="person" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person.wav"></audio>
                 </td>
                 <td></td>
                 <td>
-                    <audio name="person-dog" controls preload
-                        src="https://drive.google.com/uc?export=preview&id=1wJeNacigzhaOj5OZWFoZnMZ1LNqTmPst"></audio>
+                    <audio name="person-dog" controls preload="metadata"
+                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person-dog.wav"></audio>
                 </td>
             </tr>
         </tbody>
