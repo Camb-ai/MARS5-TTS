@@ -59,7 +59,7 @@ deep_clone = True
 cfg = config_class(deep_clone=deep_clone, rep_penalty_window=100,
                       top_k=100, temperature=0.7, freq_penalty=3)
 
-ar_codes, output_audio = mars5.tts("the quick brown rat.", wav, 
+ar_codes, output_audio = mars5.tts("The quick brown rat.", wav, 
           ref_transcript,
           cfg=cfg)
 # output_audio is (T,) shape float tensor corresponding to the 24kHz output audio.
@@ -73,13 +73,21 @@ _Some tips for best quality:_
 - Use proper punctuation -- the model is can be guided and made better or worse with proper use of punctuation and capitalization.
 
 
-## Checkpoints
+## Model details
+
+**Checkpoints**
 
 The checkpoints for Mars 5 are provided under the releases tab of this github repo. We provide two checkpoints:
 
-- AR fp16 checkpoint, along with config embedded in the checkpoint.
-- NAR fp16 checkpoint, along with config embedded in the checkpoint.
+- AR fp16 checkpoint [~750M parameters], along with config embedded in the checkpoint.
+- NAR fp16 checkpoint [~450M parameters], along with config embedded in the checkpoint.
 - The byte-pair encoding tokenizer used for the L0 encodec codes and the English text is embedded in each checkpoint under the `'vocab'` key, and follows roughly the same format of a saved minbpe tokenizer. 
+
+**Hardware requirements**:
+
+You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters. In general, at least **20GB of GPU VRAM** is needed to run the model on GPU (we plan to further optimize this in the future).
+
+If you do not have the necessary hardware requirements and just want to use Mars in your applications, you can use it via our API: see [docs.camb.ai](https://docs.camb.ai/). If you need some more credits to test it for your use case, feel free to reach out to `help@camb.ai` for help.
 
 ## Contributions
 
@@ -91,6 +99,17 @@ Areas we are looking to improve, and welcome any contributions:
 - Speed/performance optimizations
 - Improving reference audio selection when given long references.
 - Any other fun and useful ideas to expand the capabilities of Mars.
+
+**Contribution format**:
+
+The preferred way to contribute to librosa is to fork the [master repository](https://github.com/Camb-ai/mars5-tts) on GitHub:
+
+1. Fork the repo on github
+2. Clone the repo, set upstream as this repo: `git remote add upstream git@github.com:Camb-ai/mars5-tts.git`
+3. Make to a new local branch and make your changes, commit changes.
+4. Push changes to new upstream branch: `git push --set-upstream origin <NAME-NEW-BRANCH>`
+5. On github, go to your fork and click 'Pull request' to begin the PR process. Please make sure to include a description of what you did/fixed.
+
 
 ## Acknowledgements
 
