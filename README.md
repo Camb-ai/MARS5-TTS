@@ -1,14 +1,14 @@
 ![MARS5 Banner](assets/github-banner.png)
 
-# MARS5 TTS
+# MARS5: A novel speech model for insane prosody.
 
-This is the repo for the MARS5 English TTS model from CAMB.AI.
+This is the repo for the MARS5 English speech model (TTS) from CAMB.AI.
 
 The model follows a two-stage AR-NAR pipeline with a distinctively novel NAR component (see more info in the [docs](docs/architecture.md)). 
 
 With just 5 seconds of audio and a snippet of text, MARS5 can generate speech even for prosodically hard and diverse scenarios like sports commentary, anime and more. Check out our demo:
 
-[![MARS5 demo video](https://img.youtube.com/vi/bmJSLPYrKtE/0.jpg)](https://www.youtube.com/watch?v=bmJSLPYrKtE)
+[![MARS5 demo video](assets/demo-preview.png)](https://www.youtube.com/watch?v=bmJSLPYrKtE)
 
 **Quick links**:
 - [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ lanugages for TTS and dubbing)
