@@ -1,28 +1,31 @@
-# Mars 5 TTS
+![MARS5 Banner](assets/github-banner.png)
 
-This is the repo for the Mars 5 English TTS model from Camb.AI.
-The model follows a two-stage AR-NAR pipeline similar to other large TTS models, but has a slightly different NAR component (see more info in the [docs](docs/architecture.md)). 
-Mars 5 can generate speech from a snippet of text in the voice of any provided reference, where only 5 seconds of reference audio is needed.
+# MARS5 TTS
 
-Links:
-- [Camb.AI website](https://camb.ai/) (use Mars5 to dub videos)
+This is the repo for the MARS5 English TTS model from CAMB.AI.
+
+The model follows a two-stage AR-NAR pipeline with a distinctively novel NAR component (see more info in the [docs](docs/architecture.md)). 
+
+With just 5 seconds of audio and a snippet of text, MARS5 can generate speech even for prosodically hard and diverse scenarios like sports commentary, anime and more. Check out our demo:
+
+![MARS5 video demo](https://www.youtube.com/watch?v=bmJSLPYrKtE)
+
+**Quick links**:
+- [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ lanugages for TTS and dubbing)
 - Technical docs: [in the docs folder](docs/architecture.md)
 - Colab quickstart: <a target="_blank" href="https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - Demo page with samples: _to come_
-
 
 ![Mars 5 simplified diagram](docs/assets/simplified_diagram.png)
 
 **Figure**: the high-level architecture flow of Mars 5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
-<!-- I'd maybe add a little more about the model performance subjectively and why it's good / different versus what's out there -- aka, can handle highly prosodic scenarios with a few seconds etc etc. -->
-Mars 5 can synthesis speech with rich prosody from a piece of text and onlu a few seconds of audio from a reference speaker.
 Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and captialization.
 E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in captial letters in the transcript. 
 This enables a fairly natural way for guiding the prosody of the generated output.
 
 Speaker identity is specified using an audio reference file between 2-12 seconds, with lengths around 6s giving optimal results.
-Further, by providing the transcript of the reference, Mars 5 enables one to do a '_deep clone_' which improves the quality of the cloning and output, at the cost of taking a bit longer to produce the audio.
+Further, by providing the transcript of the reference, MARS5 enables one to do a '_deep clone_' which improves the quality of the cloning and output, at the cost of taking a bit longer to produce the audio.
 For more details on this and other performance and model details, please see inside the [docs folder](docs/architecture.md).
 
 
@@ -87,7 +90,7 @@ _Some tips for best quality:_
 
 **Checkpoints**
 
-The checkpoints for Mars 5 are provided under the releases tab of this github repo. We provide two checkpoints:
+The checkpoints for MARS5 are provided under the releases tab of this github repo. We provide two checkpoints:
 
 - AR fp16 checkpoint [~750M parameters], along with config embedded in the checkpoint.
 - NAR fp16 checkpoint [~450M parameters], along with config embedded in the checkpoint.
@@ -97,12 +100,14 @@ The checkpoints for Mars 5 are provided under the releases tab of this github re
 
 You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters. In general, at least **20GB of GPU VRAM** is needed to run the model on GPU (we plan to further optimize this in the future).
 
-If you do not have the necessary hardware requirements and just want to use Mars in your applications, you can use it via our API: see [docs.camb.ai](https://docs.camb.ai/). If you need some more credits to test it for your use case, feel free to reach out to `help@camb.ai` for help.
+If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our API: see [docs.camb.ai](https://docs.camb.ai/). If you need some more credits to test it for your use case, feel free to reach out to `help@camb.ai` for help.
 
 ## Contributions
 
-We welcome any contributions to improving the model. As you may find when experimenting, it can produce really great results, but is still somewhat unstable and doesn't _consistently_ provide excellent outputs.
-If you would like to contribute any improvement to Mars, please feel free to raise a pull request and one of the developers will take a look.
+We welcome any contributions to improving the model. As you may find when experimenting, it can produce really great results, it can still be further improved to create excellent outputs _consistently_. 
+
+If you would like to contribute any improvement to MARS, please feel free to raise a pull request and one of the developers will take a look.
+
 Areas we are looking to improve, and welcome any contributions:
 
 - Inference stability
@@ -112,7 +117,7 @@ Areas we are looking to improve, and welcome any contributions:
 
 **Contribution format**:
 
-The preferred way to contribute to librosa is to fork the [master repository](https://github.com/Camb-ai/mars5-tts) on GitHub:
+The preferred way to contribute to our repo is to fork the [master repository](https://github.com/Camb-ai/mars5-tts) on GitHub:
 
 1. Fork the repo on github
 2. Clone the repo, set upstream as this repo: `git remote add upstream git@github.com:Camb-ai/mars5-tts.git`
@@ -120,16 +125,24 @@ The preferred way to contribute to librosa is to fork the [master repository](ht
 4. Push changes to new upstream branch: `git push --set-upstream origin <NAME-NEW-BRANCH>`
 5. On github, go to your fork and click 'Pull request' to begin the PR process. Please make sure to include a description of what you did/fixed.
 
+## License
+
+We are open-sourcing MARS in English under GNU AGPL 3.0, but you can request to use it under a different license by emailing help@camb.ai
+
+## Join our team
+
+We're an ambitious team, globally distributed, with a singular aim of making everyone's voice count. At CAMB.AI, we're a research team of Interspeech-published, Carnegie Mellon, ex-Siri engineers and we're looking for you to join our team. 
+
+We're actively hiring; please drop us an email at ack@camb.ai if you're interested. Visit our [careers page](https://www.camb.ai/careers) for more info. at 
 
 ## Acknowledgements
 
 Parts of code for this project are adapted from the following repositories -- please make sure to check them out! Thank you to the authors of:
 
+- AWS: For providing much needed compute resources (NVIDIA H100s) to enable training of the model.
 - TransFusion: [https://github.com/RF5/transfusion-asr](https://github.com/RF5/transfusion-asr)
 - Multinormial diffusion: [https://github.com/ehoogeboom/multinomial_diffusion](https://github.com/ehoogeboom/multinomial_diffusion)
 - Mistral-src: [https://github.com/mistralai/mistral-src](https://github.com/mistralai/mistral-src)
 - minbpe: [https://github.com/karpathy/minbpe](https://github.com/karpathy/minbpe)
 - gemalo-ai's encodec Vocos: [https://github.com/gemelo-ai/vocos](https://github.com/gemelo-ai/vocos)
 - librosa for their `.trim()` code: [https://librosa.org/doc/main/generated/librosa.effects.trim.html](https://librosa.org/doc/main/generated/librosa.effects.trim.html)
-
-
