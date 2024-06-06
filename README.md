@@ -15,6 +15,16 @@ Links:
 
 **Figure**: the high-level architecture flow of Mars 5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
+<!-- I'd maybe add a little more about the model performance subjectively and why it's good / different versus what's out there -- aka, can handle highly prosodic scenarios with a few seconds etc etc. -->
+Mars 5 can synthesis speech with rich prosody from a piece of text and onlu a few seconds of audio from a reference speaker.
+Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and captialization.
+E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in captial letters in the transcript. 
+This enables a fairly natural way for guiding the prosody of the generated output.
+
+Speaker identity is specified using an audio reference file between 2-12 seconds, with lengths around 6s giving optimal results.
+Further, by providing the transcript of the reference, Mars 5 enables one to do a '_deep clone_' which improves the quality of the cloning and output, at the cost of taking a bit longer to produce the audio.
+For more details on this and other performance and model details, please see inside the [docs folder](docs/architecture.md).
+
 
 ## Quickstart
 
