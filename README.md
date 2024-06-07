@@ -15,7 +15,7 @@ https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000
 
 
 **Quick links**:
-- [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ lanugages for TTS and dubbing)
+- [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ languages for TTS and dubbing)
 - Technical docs: [in the docs folder](docs/architecture.md)
 - Colab quickstart: <a target="_blank" href="https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - Demo page with samples: [here](https://179c54d254f7.ngrok.app/)
@@ -24,7 +24,7 @@ https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000
 
 **Figure**: the high-level architecture flow of Mars 5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
-Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and captialization.
+Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and capitalization.
 E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in captial letters in the transcript. 
 This enables a fairly natural way for guiding the prosody of the generated output.
 
@@ -87,7 +87,7 @@ That's it! These default settings provide pretty good results, but feel free to 
 _Some tips for best quality:_
 - Make sure reference audio is clean and between 1 second and 12 seconds.
 - Use deep clone and provide an accurate transcript for the reference.
-- Use proper punctuation -- the model is can be guided and made better or worse with proper use of punctuation and capitalization.
+- Use proper punctuation -- the model can be guided and made better or worse with proper use of punctuation and capitalization.
 
 
 ## Model details
@@ -116,7 +116,7 @@ Rough areas we are looking to improve, and welcome any contributions:
 - Improving reference audio selection when given long references.
 - Benchmark performance numbers for Mars 5 on standard speech datasets. 
 
-If you would like to contribute any improvement to MARS, please feel free to contribute (guidelins below).
+If you would like to contribute any improvement to MARS, please feel free to contribute (guidelines below).
 
 ## Contributions
 
@@ -148,8 +148,8 @@ Parts of code for this project are adapted from the following repositories -- pl
 
 - AWS: For providing much needed compute resources (NVIDIA H100s) to enable training of the model.
 - TransFusion: [https://github.com/RF5/transfusion-asr](https://github.com/RF5/transfusion-asr)
-- Multinormial diffusion: [https://github.com/ehoogeboom/multinomial_diffusion](https://github.com/ehoogeboom/multinomial_diffusion)
+- Multinomial diffusion: [https://github.com/ehoogeboom/multinomial_diffusion](https://github.com/ehoogeboom/multinomial_diffusion)
 - Mistral-src: [https://github.com/mistralai/mistral-src](https://github.com/mistralai/mistral-src)
 - minbpe: [https://github.com/karpathy/minbpe](https://github.com/karpathy/minbpe)
-- gemalo-ai's encodec Vocos: [https://github.com/gemelo-ai/vocos](https://github.com/gemelo-ai/vocos)
+- gemelo-ai's encodec Vocos: [https://github.com/gemelo-ai/vocos](https://github.com/gemelo-ai/vocos)
 - librosa for their `.trim()` code: [https://librosa.org/doc/main/generated/librosa.effects.trim.html](https://librosa.org/doc/main/generated/librosa.effects.trim.html)
