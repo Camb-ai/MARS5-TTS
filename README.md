@@ -104,18 +104,21 @@ You must be able to store at least 750M+450M params on GPU, and do inference wit
 
 If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our API: see [docs.camb.ai](https://docs.camb.ai/). If you need some more credits to test it for your use case, feel free to reach out to `help@camb.ai` for help.
 
-## Contributions
+## Roadmap
 
-We welcome any contributions to improving the model. As you may find when experimenting, it can produce really great results, it can still be further improved to create excellent outputs _consistently_. 
+Mars 5 is not perfect at the moment, and we are working on a few efforts to improve its quality, stability, and performance. 
+Rough areas we are looking to improve, and welcome any contributions:
 
-If you would like to contribute any improvement to MARS, please feel free to raise a pull request and one of the developers will take a look.
-
-Areas we are looking to improve, and welcome any contributions:
-
-- Inference stability
+- Improving inference stability and consistency
 - Speed/performance optimizations
 - Improving reference audio selection when given long references.
 - Any other fun and useful ideas to expand the capabilities of Mars.
+
+If you would like to contribute any improvement to MARS, please feel free to contribute (guidelins below).
+
+## Contributions
+
+We welcome any contributions to improving the model. As you may find when experimenting, it can produce really great results, it can still be further improved to create excellent outputs _consistently_. 
 
 **Contribution format**:
 

@@ -127,9 +127,9 @@ class Mars5TTS(nn.Module):
         return wav_diffusion.cpu().squeeze()[None]
 
     @torch.inference_mode
-    def tts(self, text: Tensor, ref_audio: Tensor, ref_transcript: Optional[str] = None, 
+    def tts(self, text: str, ref_audio: Tensor, ref_transcript: Optional[str] = None, 
             cfg: Optional[InferenceConfig] = InferenceConfig()) -> Tensor:
-        """ Perform TTS for `text`, given a reference audio `ref_audio` (of shape [sequence_length,]) 
+        """ Perform TTS for `text`, given a reference audio `ref_audio` (of shape [sequence_length,], sampled at 24kHz) 
         which has an associated `ref_transcript`. Perform inference using the inference 
         config given by `cfg`, which controls the temperature, top_p, etc...
         Returns:
