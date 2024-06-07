@@ -10,7 +10,7 @@ With just 5 seconds of audio and a snippet of text, MARS5 can generate speech ev
 
 
 
-[![MARS5 DEMO](assets/demo-preview.png)](https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000a96f250c4)
+![![MARS5 DEMO](assets/demo-preview.png)](https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000a96f250c4)
 
 
 
