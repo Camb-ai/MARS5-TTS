@@ -8,15 +8,12 @@ The model follows a two-stage AR-NAR pipeline with a distinctively novel NAR com
 
 With just 5 seconds of audio and a snippet of text, MARS5 can generate speech even for prosodically hard and diverse scenarios like sports commentary, anime and more. Check out our demo:
 
-<a href="https://www.youtube.com/watch?v=bmJSLPYrKtE" target="_blank">
-  <img src="assets/demo-preview.png" alt="MARS5 demo video">
-</a>
 
 **Quick links**:
 - [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ lanugages for TTS and dubbing)
 - Technical docs: [in the docs folder](docs/architecture.md)
 - Colab quickstart: <a target="_blank" href="https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Demo page with samples: _to come_
+- Demo page with samples: [here](https://179c54d254f7.ngrok.app/)
 
 ![Mars 5 simplified diagram](docs/assets/simplified_diagram.png)
 
@@ -112,7 +109,8 @@ Rough areas we are looking to improve, and welcome any contributions:
 - Improving inference stability and consistency
 - Speed/performance optimizations
 - Improving reference audio selection when given long references.
-- Any other fun and useful ideas to expand the capabilities of Mars.
+- 
+- Benchmark performance numbers for Mars 5 on standard speech datasets. 
 
 If you would like to contribute any improvement to MARS, please feel free to contribute (guidelins below).
 
