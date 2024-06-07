@@ -114,7 +114,6 @@ Rough areas we are looking to improve, and welcome any contributions:
 - Improving inference stability and consistency
 - Speed/performance optimizations
 - Improving reference audio selection when given long references.
-- 
 - Benchmark performance numbers for Mars 5 on standard speech datasets. 
 
 If you would like to contribute any improvement to MARS, please feel free to contribute (guidelins below).
