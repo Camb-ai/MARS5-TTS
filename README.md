@@ -8,9 +8,11 @@ The model follows a two-stage AR-NAR pipeline with a distinctively novel NAR com
 
 With just 5 seconds of audio and a snippet of text, MARS5 can generate speech even for prosodically hard and diverse scenarios like sports commentary, anime and more. Check out our demo:
 
-<a href="https://www.youtube.com/watch?v=bmJSLPYrKtE" target="_blank">
-  <img src="assets/demo-preview.png" alt="MARS5 demo video">
-</a>
+
+
+https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000a96f250c4
+
+
 
 **Quick links**:
 - [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ lanugages for TTS and dubbing)
