@@ -25,7 +25,7 @@ https://github.com/Camb-ai/MARS5-TTS/assets/23717819/63557935-92ad-4c1e-abfd-000
 **Figure**: the high-level architecture flow of Mars 5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
 Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and capitalization.
-E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in captial letters in the transcript. 
+E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in capital letters in the transcript. 
 This enables a fairly natural way for guiding the prosody of the generated output.
 
 Speaker identity is specified using an audio reference file between 2-12 seconds, with lengths around 6s giving optimal results.
@@ -38,7 +38,7 @@ For more details on this and other performance and model details, please see ins
 
 We use `torch.hub` to make loading the model easy -- no cloning of the repo needed. The steps to perform inference are simple:
 
-1. **Install pip dependancies**: we have 3 inference dependencies only `torch`, `torchaudio`, `librosa`, `vocos`, and `encodec`. Python must be at version 3.10 or greater, and torch must be v2.0 or greater.
+1. **Install pip dependencies**: we have 3 inference dependencies only `torch`, `torchaudio`, `librosa`, `vocos`, and `encodec`. Python must be at version 3.10 or greater, and torch must be v2.0 or greater.
 
 ```bash
 pip install --upgrade torch torchaudio librosa vocos encodec
