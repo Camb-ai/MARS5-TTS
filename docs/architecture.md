@@ -1,8 +1,5 @@
 # Mars 5 technical details
 
-While we do not have the time for a proper full writeup of the details of Mars5, its design, training, and implementation, we at least try give a more detailed overview here of how Mars5 works.
-
-
 ## hubconf object/api
 
 
