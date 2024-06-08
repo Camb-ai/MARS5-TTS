@@ -1,4 +1,5 @@
-# Mars 5 technical details
+# MARS5 Technical Details
+
 
 ## hubconf object/api
 
@@ -35,9 +36,9 @@ def vocode(self, tokens: Tensor) -> Tensor:
 ```
 
 
-## Model design
+## Model Design
 
-Mars 5 follows a two-stage AR-NAR design according to the diagram on the main page.
+MARS5 follows a two-stage AR-NAR design according to the [diagram](/docs/assets/simplified_diagram.png) on the main page.
 
 #### AR component
 
@@ -47,7 +48,7 @@ The AR model design is given below:
 
 ![Mars 5 AR architecture](/docs/assets/mars5_AR_arch.png)
 
-**Figure**: autoregressive component of Mars 5. During training, the initial 6kbps encodec tokens of the speech are fed through a small encoder-only transformer, producing a single output vector corresponding to an implicit speaker embedding.
+**Figure**: Autoregressive component of MARS5. During training, the initial 6kbps encodec tokens of the speech are fed through a small encoder-only transformer, producing a single output vector corresponding to an implicit speaker embedding.
 This vector is concatenated with learnt embeddings corresponding to the text tokens, and L0 speech tokens, after byte-pair encoding tokenization. 
 
 
@@ -79,7 +80,7 @@ The architecture of the model looks as follows:
 
 ![Mars 5 NAR architecture](/docs/assets/mars5_NAR_arch.png)
 
-**Figure**: Mars 5 non-autoregressive component. It follows an encoder-decoder transformer architecture, whereby the encoder computes an implicit speaker embedding like the AR model, and concatenates that along with the target to form an input sequence to a transformer encoder. The transformer decoder predicts the distribution of all 8 encodec codebook tokens given a partly noised input at some diffusion timestep `t`.
+**Figure**: MARS5 non-autoregressive component. It follows an encoder-decoder transformer architecture, whereby the encoder computes an implicit speaker embedding like the AR model, and concatenates that along with the target to form an input sequence to a transformer encoder. The transformer decoder predicts the distribution of all 8 encodec codebook tokens given a partly noised input at some diffusion timestep `t`.
 
 
 The encoder and decoder transformers are simple `nn.Transformer` variants with sinusoidal positional embeddings and SwiGLU activations.

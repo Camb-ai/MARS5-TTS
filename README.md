@@ -16,23 +16,23 @@ https://github.com/Camb-ai/MARS5-TTS/assets/23717819/3e191508-e03c-4ff9-9b02-d73
 
 
 
-**Quick links**:
-- [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ languages for TTS and dubbing)
-- Technical docs: [in the docs folder](docs/architecture.md)
-- Colab quickstart: <a target="_blank" href="https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Demo page with samples: [here](https://179c54d254f7.ngrok.app/)
+**Quick Links**:
+- [CAMB.AI Website](https://camb.ai/) (access MARS5 in 140+ languages for TTS and dubbing)
+- [Technical Docs](docs/architecture.md)
+- Colab Quickstart: <a target="_blank" href="https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- [Demo Page with Samples](https://179c54d254f7.ngrok.app/)
 
 ![Mars 5 simplified diagram](docs/assets/simplified_diagram.png)
 
-**Figure**: the high-level architecture flow of Mars 5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
+**Figure**: The high-level architecture flow of MARS5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
 Because the model is trained on raw audio together with byte-pair-encoded text, it can be steered with things like punctuation and capitalization.
-E.g. to add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in capital letters in the transcript. 
+E.g. To add a pause, add a comma to that part in the transcript. Or, to emphasize a word, put it in capital letters in the transcript. 
 This enables a fairly natural way for guiding the prosody of the generated output.
 
 Speaker identity is specified using an audio reference file between 2-12 seconds, with lengths around 6s giving optimal results.
 Further, by providing the transcript of the reference, MARS5 enables one to do a '_deep clone_' which improves the quality of the cloning and output, at the cost of taking a bit longer to produce the audio.
-For more details on this and other performance and model details, please see inside the [docs folder](docs/architecture.md).
+For more details on this and other performance and model details, please see the [docs folder](docs/architecture.md).
 
 
 ## Quickstart
@@ -40,13 +40,13 @@ For more details on this and other performance and model details, please see ins
 
 We use `torch.hub` to make loading the model easy -- no cloning of the repo needed. The steps to perform inference are simple:
 
-1. **Install pip dependencies**: we have 3 inference dependencies only `torch`, `torchaudio`, `librosa`, `vocos`, and `encodec`. Python must be at version 3.10 or greater, and torch must be v2.0 or greater.
+1. **Install pip dependencies**: We have 3 inference dependencies only `torch`, `torchaudio`, `librosa`, `vocos`, and `encodec`. Python must be at version 3.10 or greater, and torch must be v2.0 or greater.
 
 ```bash
 pip install --upgrade torch torchaudio librosa vocos encodec
 ```
 
-2. **Load models**: load the Mars 5 AR and NAR model from torch hub:
+2. **Load models**: Load the MARS5 AR and NAR model from torch hub:
 
 ```python
 import torch, librosa
@@ -66,7 +66,7 @@ ref_transcript = "<transcript of the reference audio>"
 ```
 
 The reference transcript is an optional piece of info you need if you wish to do a deep clone.
-Mars5 supports 2 kinds of inference: a shallow, fast inference whereby you do not need the transcript of the reference (we call this a _shallow clone_), and a second slower, but typically higher quality way, which we call a _deep clone_.
+MARS5 supports 2 kinds of inference: a shallow, fast inference whereby you do not need the transcript of the reference (we call this a _shallow clone_), and a second slower, but typically higher quality way, which we call a _deep clone_.
 To use the deep clone, you need the prompt transcript. See the [model docs](docs/architecture.md) for more info on this. 
 
 4. **Perform the synthesis**:
@@ -92,7 +92,7 @@ _Some tips for best quality:_
 - Use proper punctuation -- the model can be guided and made better or worse with proper use of punctuation and capitalization.
 
 
-## Model details
+## Model Details
 
 **Checkpoints**
 
@@ -102,21 +102,21 @@ The checkpoints for MARS5 are provided under the releases tab of this github rep
 - NAR fp16 checkpoint [~450M parameters], along with config embedded in the checkpoint.
 - The byte-pair encoding tokenizer used for the L0 encodec codes and the English text is embedded in each checkpoint under the `'vocab'` key, and follows roughly the same format of a saved minbpe tokenizer. 
 
-**Hardware requirements**:
+**Hardware Requirements**:
 
 You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters. In general, at least **20GB of GPU VRAM** is needed to run the model on GPU (we plan to further optimize this in the future).
 
-If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our API: see [docs.camb.ai](https://docs.camb.ai/). If you need some more credits to test it for your use case, feel free to reach out to `help@camb.ai` for help.
+If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our [API](https://docs.camb.ai/). If you need some extra credits to test it for your use case, feel free to reach out to `help@camb.ai`.
 
 ## Roadmap
 
-Mars 5 is not perfect at the moment, and we are working on a few efforts to improve its quality, stability, and performance. 
+MARS5 is not perfect at the moment, and we are working on a few efforts to improve its quality, stability, and performance. 
 Rough areas we are looking to improve, and welcome any contributions:
 
 - Improving inference stability and consistency
 - Speed/performance optimizations
 - Improving reference audio selection when given long references.
-- Benchmark performance numbers for Mars 5 on standard speech datasets. 
+- Benchmark performance numbers for MARS5 on standard speech datasets. 
 
 If you would like to contribute any improvement to MARS, please feel free to contribute (guidelines below).
 
@@ -130,15 +130,15 @@ The preferred way to contribute to our repo is to fork the [master repository](h
 
 1. Fork the repo on github
 2. Clone the repo, set upstream as this repo: `git remote add upstream git@github.com:Camb-ai/mars5-tts.git`
-3. Make to a new local branch and make your changes, commit changes.
+3. Make a new local branch and make your changes, commit changes.
 4. Push changes to new upstream branch: `git push --set-upstream origin <NAME-NEW-BRANCH>`
-5. On github, go to your fork and click 'Pull request' to begin the PR process. Please make sure to include a description of what you did/fixed.
+5. On github, go to your fork and click 'Pull Request' to begin the PR process. Please make sure to include a description of what you did/fixed.
 
 ## License
 
 We are open-sourcing MARS in English under GNU AGPL 3.0, but you can request to use it under a different license by emailing help@camb.ai
 
-## Join our team
+## Join Our Team
 
 We're an ambitious team, globally distributed, with a singular aim of making everyone's voice count. At CAMB.AI, we're a research team of Interspeech-published, Carnegie Mellon, ex-Siri engineers and we're looking for you to join our team. 
 
