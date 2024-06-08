@@ -36,7 +36,7 @@ https://github.com/Camb-ai/MARS5-TTS/assets/23717819/3e191508-e03c-4ff9-9b02-d73
 
 Watch full video here: [![Youtube](https://img.shields.io/badge/YouTube-red)](https://www.youtube.com/watch?v=bmJSLPYrKtE)
 
-![Mars 5 simplified diagram](docs/assets/simplified_diagram.png)
+![Mars 5 simplified diagram](docs/assets/MARS5_Architecture.png)
 
 **Figure**: The high-level architecture flow of MARS5. Given text and a reference audio, coarse (L0) encodec speech features are obtained through an autoregressive transformer model. Then, the text, reference, and coarse features are refined in a multinomial DDPM model to produce the remaining encodec codebook values. The output of the DDPM is then vocoded to produce the final audio.
 
