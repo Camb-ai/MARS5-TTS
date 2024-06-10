@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>knn-vc demo page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example Comparisons with ElevenLabs and Metavoice</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -31,691 +27,129 @@
         }
     </style>
 </head>
-
 <body>
-    <h1>Voice Conversion With Just Nearest Neighbors</h1>
-    <p>
-        <b>Authors:</b>
-        <a href="https://rf5.github.io/" target="_blank" rel="noopener noreferrer">Matthew Baas</a>,
-        <a href="https://scholar.google.com/citations?user=zCokvy8AAAAJ&hl=en&oi=ao" target="_blank"
-            rel="noopener noreferrer">Benjamin van Niekerk</a>,
-        <a href="https://www.kamperh.com/" target="_blank" rel="noopener noreferrer">Herman Kamper</a>
-    </p>
-    <p>
-        <b>Arxiv:</b>
-        <a href="https://arxiv.org/abs/2305.18975" target="_blank"
-            rel="noopener noreferrer">https://arxiv.org/abs/2305.18975</a>
-    </p>
-    <p>
-        <b>Abstract:</b>
-        Any-to-any voice conversion aims to transform source speech into a target voice with just a few examples of the
-        target speaker as a reference.
-        Recent methods produce convincing conversions, but at the cost of increased complexity - making results
-        difficult to reproduce and build on.
-        Instead, we keep it simple.
-        We propose k-nearest neighbors voice conversion (kNN-VC): a straightforward yet effective method for any-to-any
-        conversion.
-        First, we extract self-supervised representations of the source and reference speech.
-        To convert to the target speaker, we replace each frame of the source representation with its nearest neighbor
-        in the reference.
-        Finally, a pretrained vocoder synthesizes audio from the converted representation.
-        Objective and subjective evaluations show that kNN-VC improves speaker similarity with similar intelligibility
-        scores to existing methods.
-    </p>
-    <p>
-        Abstract read by Sir David Attenborough:
-    </p>
-    <audio name="abstract-reader" controls preload
-        src="https://github.com/bshall/knn-vc/releases/download/v0.1/david-attenborough.wav"></audio>
-
-    <p>
-        Code and pretrained models are available <a href="https://github.com/bshall/knn-vc" target="_blank"
-            rel="noopener noreferrer">here</a>.
-    </p>
-
-    <p>
-        <b>If you are having trouble listening to the audio, please refresh the page.</b>
-    </p>
-
-    <hr />
-
-    <h2>Samples from kNN-VC</h2>
-    <p>
-        In this section, we apply kNN-VC to unseen source and target speakers from
-        <a href="https://www.openslr.org/12" target="_blank" rel="noopener noreferrer">LibriSpeech</a>.
-    </p>
+    <h1>Example Comparisons with ElevenLabs and Metavoice</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th colspan="6" style="border-bottom:1px solid #D3D3D3;">
-                    targets
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th></th>
-                <th>
-                    2300
-                </th>
-                <th>
-                    237
-                </th>
-                <th>
-                    260
-                </th>
-                <th>
-                    1284
-                </th>
-                <th>
-                    1089
-                </th>
-                <th>
-                    4507
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    source
-                </th>
-                <th>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/2300.wav"></audio>
-                </th>
-                <th>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/237.wav"></audio>
-                </th>
-                <th>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/260.wav"></audio>
-                </th>
-                <th>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/1284.wav"></audio>
-                </th>
-                <th>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/1089.wav"></audio>
-                </th>
-                <th>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/4507.wav"></audio>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="5105" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/5105.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5105-28240-0008/4507.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="5683" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/5683.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/5683-32865-0004/4507.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="7729" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/7729.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7729-102255-0017/4507.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="3729" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/3729.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/3729-6852-0023/4507.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="7021" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/7021.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/7021-85628-0015/4507.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="4446" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/4446.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2300" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/2300.wav"></audio>
-                </td>
-                <td>
-                    <audio name="237" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/237.wav"></audio>
-                </td>
-                <td>
-                    <audio name="260" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/260.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1284" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/1284.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1089" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/1089.wav"></audio>
-                </td>
-                <td>
-                    <audio name="4507" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/unseen/4446-2273-0021/4507.wav"></audio>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-
-    <hr />
-
-    <h2>Comparison to other methods</h2>
-    <p>
-        In this section, we compare kNN-VC against
-        <a href="https://github.com/Wendison/VQMIVC" target="_blank" rel="noopener noreferrer">VQMIVC</a>,
-        <a href="https://github.com/Edresson/YourTTS" target="_blank" rel="noopener noreferrer">YourTTS</a>, and
-        <a href="https://github.com/OlaWod/FreeVC" target="_blank" rel="noopener noreferrer">FreeVC</a>.
-    </p>
-
-    <table>
-        <thead>
-            <tr>
-                <th>source</th>
-                <th>target</th>
-                <th>kNN-VC</th>
-                <th>VQMIVC</th>
-                <th>YourTTS</th>
-                <th>FreeVC</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <br>
-
-    <hr />
-
-    <h2>Ablations</h2>
-    <p>
-        In this section, we investigate the effect of target data size and prematched training.
-        We convert to a single target speaker for all examples, varying the amount of data for the matching set.
-    </p>
-
-    <table>
-        <thead>
-            <tr>
-                <th style="min-width: 85px;">target:</th>
-                <th>
-                    <audio name="2300" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/unseen/targets/2300.wav"></audio>
-                </th>
-            </tr>
-        </thead>
-    </table>
-    <table>
-        <thead>
-            <tr>
-                <th style="min-width: 120px;">prematched</th>
-                <th>source</th>
-                <th>5 secs</th>
-                <th>10 secs</th>
-                <th>30 secs</th>
-                <th>1 min</th>
-                <th>5 mins</th>
-                <th>8 mins</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    &#10007
-                </td>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/5secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="10secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/10secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="30secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/30secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1min" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/1min.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5mins" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/5mins.wav"></audio>
-                </td>
-                <td>
-                    <audio name="8mins" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/8mins.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    &#10007
-                </td>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/5secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="10secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/10secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="30secs" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/30secs.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1min" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/1min.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5mins" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/5mins.wav"></audio>
-                </td>
-                <td>
-                    <audio name="8mins" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/8mins.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    &#10003
-                </td>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/5secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="10secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/10secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="30secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/30secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1min-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/1min-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5mins-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/5mins-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="8mins-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/1284-1181-0004/8mins-pre.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    &#10003
-                </td>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/5secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="10secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/10secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="30secs-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/30secs-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1min-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/1min-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="5mins-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/5mins-pre.wav"></audio>
-                </td>
-                <td>
-                    <audio name="8mins-pre" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/ablation/5105-28241-0018/8mins-pre.wav"></audio>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-
-    <hr />
-
-    <h2>Bonus stuff</h2>
-    <p>
-        In this section, we apply kNN-VC to unseen languages, whispered speech, and even non-speech sounds.
-        We hope to explore these areas more in future work.
-    </p>
-
-    <h4>Cross-lingual voice conversion</h4>
-    <p>
-        For the cross-lingual examples, we use data from <a href="https://github.com/Kyubyong/css10" target="_blank"
-            rel="noopener noreferrer">CSS10</a>.
-    </p>
-
-    <table>
-        <thead>
-            <tr>
-                <th align="center" style="min-width: 120px;"></th>
-                <th>source</th>
-                <th>target</th>
-                <th>output</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    es-de
-                </td>
-                <td>
-                    <audio name="3_src_es" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/3_src_es.wav"></audio>
-                </td>
-                <td>
-                    <audio name="3_ref_de" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/3_ref_de.wav"></audio>
-                </td>
-                <td>
-                    <audio name="3_output" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/3_output.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    de-ja
-                </td>
-                <td>
-                    <audio name="2_src_de" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/2_src_de.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2_ref_ja" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/2_ref_ja.wav"></audio>
-                </td>
-                <td>
-                    <audio name="2_output" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/2_output.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" style="min-width: 120px;">
-                    zh-es
-                </td>
-                <td>
-                    <audio name="1_src_zh" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/1_src_zh.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1_ref_es" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/1_ref_es.wav"></audio>
-                </td>
-                <td>
-                    <audio name="1_output" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/cross-lingual/1_output.wav"></audio>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-
-    <h4>Whispered speech conversion</h4>
-    <p>
-        For the whispered examples, we use data from <a href="https://chains.ucd.ie/index.php" target="_blank"
-            rel="noopener noreferrer">CHAINS</a>.
-    </p>
-
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th colspan="6" style="border-bottom:1px solid #D3D3D3;">
-                    targets
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th></th>
-                <th>
-                    irm12
-                </th>
-                <th>
-                    irf06
-                </th>
-                <th>
-                    irm06
-                </th>
-                <th>
-                    irf04
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    source
-                </th>
-                <th>
-                    <audio name="irm12" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/target/irm12.wav"></audio>
-                </th>
-                <th>
-                    <audio name="irf06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/target/irf06.wav"></audio>
-                </th>
-                <th>
-                    <audio name="irm06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/target/irm06.wav"></audio>
-                </th>
-                <th>
-                    <audio name="irf04" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/target/irf04.wav"></audio>
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf04_s21_solo/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm12" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf04_s21_solo/irm12.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf04_s21_solo/irf06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf04_s21_solo/irm06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf04" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf04_s21_solo/irf04.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf06_s28_solo/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm12" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf06_s28_solo/irm12.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf06_s28_solo/irf06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf06_s28_solo/irm06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf04" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irf06_s28_solo/irf04.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm06_s27_solo/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm12" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm06_s27_solo/irm12.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm06_s27_solo/irf06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm06_s27_solo/irm06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf04" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm06_s27_solo/irf04.wav"></audio>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <audio name="source" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm12_s18_solo/source.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm12" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm12_s18_solo/irm12.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm12_s18_solo/irf06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irm06" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm12_s18_solo/irm06.wav"></audio>
-                </td>
-                <td>
-                    <audio name="irf04" controls preload="metadata" src="https://f003.backblazeb2.com/file/knn-vc/whispered/irm12_s18_solo/irf04.wav"></audio>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-
-    <p>
-        We also convert a song to a whisper (including the drum beat):
-    </p>
-    <table>
-        <thead>
-            <tr>
-                <th>source</th>
-                <th>output</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <audio name="creeper" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/creeper/creeper.wav"></audio>
-                </td>
-                <td>
-                    <audio name="creeper-whisper" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/creeper/creeper-whisper.wav"></audio>
-                </td>
-            </tr>
-        </tbody>
+        <tr>
+            <th>Example</th>
+            <th>Text</th>
+            <th>Reference Voice</th>
+            <th>Elevenlabs Output</th>
+            <th>Metavoice Output</th>
+            <th>Mars 5 Output</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>I just can't anymore.</td>
+            <td><audio controls><source src="demo_egs/comparisons/cant_anymore/reference.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/cant_anymore/el.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/cant_anymore/metavoice.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/cant_anymore/mars5.flac" type="audio/flac"></audio></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Have you heard the legend of Mars?</td>
+            <td><audio controls><source src="demo_egs/comparisons/seen_mars/reference.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/seen_mars/el.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/seen_mars/metavoice.wav" type="audio/wav"></audio></td>
+            <td><audio controls><source src="demo_egs/comparisons/seen_mars/mars.flac" type="audio/flac"></audio></td>
+        </tr>
     </table>
 
-    <h4>Dog-person conversion</h4>
-    <p>
-        To see how kNN-VC handles non-human sounds, we apply it to an audio clip of a barking dog.
-    </p>
+        <h2>Additional Samples</h2>
 
-    <table>
-        <thead>
+        <table>
             <tr>
-                <th></th>
-                <th>person</th>
-                <th>dog</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>
-                    source
-                </th>
-                <th>
-                    <audio name="person" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person.wav"></audio>
-                </th>
-                <th>
-                    <audio name="dog" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog.wav"></audio>
-                </th>
+                <th>Example</th>
+                <th>Text</th>
+                <th>Reference Voice</th>
+                <th>Output</th>
             </tr>
             <tr>
-                <td>
-                    <audio name="dog" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog.wav"></audio>
-                </td>
-                <td>
-                    <audio name="dog-person" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/dog-person.wav"></audio>
-                </td>
-                <td></td>
+                <td>1</td>
+                <td>Ladies and gentlemen, now is the time for the next step in speech synthesis</td>
+                <td><audio controls><source src="demo_egs/eg1_ref.flac" type="audio/flac"></audio></td>
+                <td><audio controls><source src="demo_egs/eg1_next_step_in_speech.flac" type="audio/flac"></audio></td>
             </tr>
             <tr>
-                <td>
-                    <audio name="person" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person.wav"></audio>
-                </td>
-                <td></td>
-                <td>
-                    <audio name="person-dog" controls preload="metadata"
-                        src="https://f003.backblazeb2.com/file/knn-vc/dog/person-dog.wav"></audio>
-                </td>
+                <td>2</td>
+                <td>Let us introduce to you our new text to speech model, Mars five.</td>
+                <td><audio controls><source src="demo_egs/eg2_ref.flac" type="audio/flac"></audio></td>
+                <td><audio controls><source src="demo_egs/eg2_introduce.flac" type="audio/flac"></audio></td>
             </tr>
-        </tbody>
-    </table>
-    <br>
-
-
+            <tr>
+                <td>3</td>
+                <td>Mars is quite... insane.</td>
+                <td><audio controls><source src="demo_egs/eg3_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg3_mars_is_amazing.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Mars can be a bit quirky at times.</td>
+                <td><audio controls><source src="demo_egs/eg4_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg4_quirky2.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>And talk back with a little bit of spirit in it.</td>
+                <td><audio controls><source src="demo_egs/eg5_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg5_talk_back_annoyance.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>You should speak!</td>
+                <td><audio controls><source src="demo_egs/eg6_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg6_you_should_speak_theseus.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>On his rump, he hoists the game winning shot!</td>
+                <td><audio controls><source src="demo_egs/eg7_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg7_sports.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Can he make it in this shot? GO!!</td>
+                <td><audio controls><source src="demo_egs/eg8_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/voicefix_out/eg8_shout.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Then the wizard said softly, "don't make a sound".</td>
+                <td><audio controls><source src="demo_egs/eg9_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg9_softly.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>I'm gonna make him an offer he can't refuse</td>
+                <td><audio controls><source src="demo_egs/eg11_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg11_bob_ross.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Houston, we have a problem.</td>
+                <td><audio controls><source src="demo_egs/eg12_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg12_bob_ross_output_2.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>There appears to be a snake in my boot.</td>
+                <td><audio controls><source src="demo_egs/eg13_ref.flac" type="audio/flac"></audio></td>
+                <td><audio controls><source src="demo_egs/eg13_snake_in_my_boot1.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>I'm gonna make him an offer he can't refuse.</td>
+                <td><audio controls><source src="demo_egs/eg14_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg14_micki_mouse_output_1.flac" type="audio/flac"></audio></td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>We hope you enjoyed the demo, feel free to try generate some samples yourself below.</td>
+                <td><audio controls><source src="demo_egs/eg18_ref.wav" type="audio/wav"></audio></td>
+                <td><audio controls><source src="demo_egs/eg18_finale.flac" type="audio/flac"></audio></td>
+            </tr>
+        </table>
 </body>
-
 </html>
