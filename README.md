@@ -52,7 +52,7 @@ For more details on this and other performance and model details, please see the
 
 | Example | Text | Reference Voice | Elevenlabs Output | Metavoice Output | Mars 5 Output |
 |---------|------|-----------------|-------------------|------------------|---------------|
-| 1       | I just can't anymore. | ![Reference](demo_egs/comparisons/cant_anymore/reference.wav) | ![Elevenlabs](demo_egs/comparisons/cant_anymore/el.wav) | ![Metavoice](demo_egs/comparisons/cant_anymore/metavoice.wav) | ![Mars 5](demo_egs/comparisons/cant_anymore/mars5.flac) |
+| 1       | I just can't anymore. | [Reference](demo_egs/comparisons/cant_anymore/reference.wav) | [Elevenlabs](demo_egs/comparisons/cant_anymore/el.wav) | [Metavoice](demo_egs/comparisons/cant_anymore/metavoice.wav) | [Mars 5](demo_egs/comparisons/cant_anymore/mars5.flac) |
 | 2       | Have you heard the legend of Mars? | [Reference](demo_egs/comparisons/seen_mars/reference.wav) | [Elevenlabs](demo_egs/comparisons/seen_mars/el.wav) | [Metavoice](demo_egs/comparisons/seen_mars/metavoice.wav) | [Mars 5](demo_egs/comparisons/seen_mars/mars.flac) |
 
 <details>
@@ -67,7 +67,7 @@ For more details on this and other performance and model details, please see the
 | 5       | And talk back with a little bit of spirit in it. | [Reference](demo_egs/eg5_ref.wav) | [Output](demo_egs/eg5_talk_back_annoyance.flac) |
 | 6       | You should speak! | [Reference](demo_egs/eg6_ref.wav) | [Output](demo_egs/eg6_you_should_speak_theseus.flac) |
 | 7       | On his rump, he hoists the game winning shot! | [Reference](demo_egs/eg7_ref.wav) | [Output](demo_egs/eg7_sports.flac) |
-| 8       | Can he make it in this shot? GO!! | [Reference](demo_egs/eg8_ref.wav) | [Output](demo_egs/voicefix_out/eg8_shout.wav) |
+| 8       | Can he make it in this shot? GO!! | [Reference](demo_egs/eg8_ref.wav) | [Output](demo_egs/eg8_shout_ff.wav) |
 | 9       | Then the wizard said softly, "don't make a sound". | [Reference](demo_egs/eg9_ref.wav) | [Output](demo_egs/eg9_softly.flac) |
 | 10      | I'm gonna make him an offer he can't refuse | [Reference](demo_egs/eg11_ref.wav) | [Output](demo_egs/eg11_bob_ross.flac) |
 | 11      | Houston, we have a problem. | [Reference](demo_egs/eg12_ref.wav) | [Output](demo_egs/eg12_bob_ross_output_2.flac) |
