@@ -48,6 +48,36 @@ Speaker identity is specified using an audio reference file between 2-12 seconds
 Further, by providing the transcript of the reference, MARS5 enables one to do a '_deep clone_' which improves the quality of the cloning and output, at the cost of taking a bit longer to produce the audio.
 For more details on this and other performance and model details, please see the [docs folder](docs/architecture.md).
 
+## Comparison with ElevenLabs and Metavoice
+
+| Example | Text | Reference Voice | Elevenlabs Output | Metavoice Output | Mars 5 Output |
+|---------|------|-----------------|-------------------|------------------|---------------|
+| 1       | I just can't anymore. | [Reference](demo_egs/comparisons/cant_anymore/reference.wav) | [Elevenlabs](demo_egs/comparisons/cant_anymore/el.wav) | [Metavoice](demo_egs/comparisons/cant_anymore/metavoice.wav) | [Mars 5](demo_egs/comparisons/cant_anymore/mars5.flac) |
+| 2       | Have you heard the legend of Mars? | [Reference](demo_egs/comparisons/seen_mars/reference.wav) | [Elevenlabs](demo_egs/comparisons/seen_mars/el.wav) | [Metavoice](demo_egs/comparisons/seen_mars/metavoice.wav) | [Mars 5](demo_egs/comparisons/seen_mars/mars.flac) |
+
+<details>
+<summary>Additional Samples</summary>
+
+| Example | Text | Reference Voice | Output |
+|---------|------|-----------------|--------|
+| 1       | Ladies and gentlemen, now is the time for the next step in speech synthesis | [Reference](demo_egs/eg1_ref.flac) | [Output](demo_egs/eg1_next_step_in_speech.flac) |
+| 2       | Let us introduce to you our new text to speech model, Mars five. | [Reference](demo_egs/eg2_ref.flac) | [Output](demo_egs/eg2_introduce.flac) |
+| 3       | Mars is quite... insane. | [Reference](demo_egs/eg3_ref.wav) | [Output](demo_egs/eg3_mars_is_amazing.flac) |
+| 4       | Mars can be a bit quirky at times. | [Reference](demo_egs/eg4_ref.wav) | [Output](demo_egs/eg4_quirky2.flac) |
+| 5       | And talk back with a little bit of spirit in it. | [Reference](demo_egs/eg5_ref.wav) | [Output](demo_egs/eg5_talk_back_annoyance.flac) |
+| 6       | You should speak! | [Reference](demo_egs/eg6_ref.wav) | [Output](demo_egs/eg6_you_should_speak_theseus.flac) |
+| 7       | On his rump, he hoists the game winning shot! | [Reference](demo_egs/eg7_ref.wav) | [Output](demo_egs/eg7_sports.flac) |
+| 8       | Can he make it in this shot? GO!! | [Reference](demo_egs/eg8_ref.wav) | [Output](demo_egs/eg8_shout_ff.wav) |
+| 9       | Then the wizard said softly, "don't make a sound". | [Reference](demo_egs/eg9_ref.wav) | [Output](demo_egs/eg9_softly.flac) |
+| 10      | I'm gonna make him an offer he can't refuse | [Reference](demo_egs/eg11_ref.wav) | [Output](demo_egs/eg11_bob_ross.flac) |
+| 11      | Houston, we have a problem. | [Reference](demo_egs/eg12_ref.wav) | [Output](demo_egs/eg12_bob_ross_output_2.flac) |
+| 12      | There appears to be a snake in my boot. | [Reference](demo_egs/eg13_ref.flac) | [Output](demo_egs/eg13_snake_in_my_boot1.flac) |
+| 13      | I'm gonna make him an offer he can't refuse. | [Reference](demo_egs/eg14_ref.wav) | [Output](demo_egs/eg14_micki_mouse_output_1.flac) |
+| 14      | We hope you enjoyed the demo, feel free to try generate some samples yourself below. | [Reference](demo_egs/eg18_ref.wav) | [Output](demo_egs/eg18_finale.flac) |
+
+</details>
+
+
 ## Quick links
 
 - [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ languages for TTS and dubbing)
