@@ -53,7 +53,10 @@ For more details on this and other performance and model details, please see the
 - [CAMB.AI website](https://camb.ai/) (access MARS5 in 140+ languages for TTS and dubbing)
 - Technical details and architecture: [in the docs folder](docs/architecture.md)
 - Colab quickstart: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb)
-- Demo page with samples: [here](https://179c54d254f7.ngrok.app/)
+- Sample page with a few hard prosodic samples: [https://camb-ai.github.io/MARS5-TTS/](https://camb-ai.github.io/MARS5-TTS/)
+- Online demo: [here](https://179c54d254f7.ngrok.app/)
+
+
 ## Quickstart
 
 
