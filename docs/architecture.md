@@ -42,13 +42,13 @@ MARS5 follows a two-stage AR-NAR design according to the [diagram](/docs/assets/
 
 #### AR component
 
-The AR model follows a Mistral-style encoder-only transformer model to predict Encodec L0 codes (the lowest/most coarse level quantization codes).
+The AR model follows a Mistral-style decoder-only transformer model to predict Encodec L0 codes (the lowest/most coarse level quantization codes).
 Overall, the AR and NAR model is going to predict all 8 codebook entries of the Encodec 6kbps codec. 
 The AR model design is given below:
 
 ![Mars 5 AR architecture](/docs/assets/mars5_AR_arch.png)
 
-**Figure**: Autoregressive component of MARS5. During training, the initial 6kbps encodec tokens of the speech are fed through a small encoder-only transformer, producing a single output vector corresponding to an implicit speaker embedding.
+**Figure**: Autoregressive component of MARS5. During training, the initial 6kbps encodec tokens of the speech are fed through a small decoder-only transformer, producing a single output vector corresponding to an implicit speaker embedding.
 This vector is concatenated with learnt embeddings corresponding to the text tokens, and L0 speech tokens, after byte-pair encoding tokenization. 
 
 
