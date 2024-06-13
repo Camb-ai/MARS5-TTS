@@ -182,7 +182,7 @@ We're actively hiring; please drop us an email at ack@camb.ai if you're interest
 ## Community
 
 Join CAMB.AI community on [Forum](https://github.com/Camb-ai/MARS5-TTS/discussions) and
-[Discord](https://discord.gg/ZzsKTAKM) to share any suggestions, feedback, or questions with our team.
+[Discord](https://discord.gg/FFQNCSKSXX) to share any suggestions, feedback, or questions with our team.
 
 
 ## Acknowledgements
