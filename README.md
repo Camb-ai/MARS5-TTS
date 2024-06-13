@@ -10,6 +10,7 @@
    <a href="https://camb.ai/"> Camb AI Website </a></h3>
 
    [![GitHub Repo stars](https://img.shields.io/github/stars/Camb-ai/MARS5-TTS?style=social)](https://github.com/Camb-ai/MARS5-TTS/stargazers)
+   [![Join our Discord](https://discordapp.com/api/guilds/1107565548864290840/widget.png)](https://discord.gg/FFQNCSKSXX)
    [![HuggingFace badge](https://img.shields.io/badge/%F0%9F%A4%97HuggingFace-Join-yellow)](https://huggingface.co/CAMB-AI/MARS5-TTS)
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb)
 
