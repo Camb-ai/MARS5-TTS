@@ -6,8 +6,8 @@ from pathlib import Path
 import torch
 from inference import Mars5TTS, InferenceConfig
 
-ar_url = "https://github.com/Camb-ai/mars5-tts/releases/download/v0.1-checkpoints/mars5_en_checkpoints_ar-1680000.pt"
-nar_url = "https://github.com/Camb-ai/mars5-tts/releases/download/v0.1-checkpoints/mars5_en_checkpoints_nar-1260000.pt"
+ar_url = "https://github.com/Camb-ai/mars5-tts/releases/download/v0.2/mars5_en_checkpoints_ar-1700000.pt"
+nar_url = "https://github.com/Camb-ai/mars5-tts/releases/download/v0.2/mars5_en_checkpoints_nar-1750000.pt"
 
 def mars5_english(pretrained=True, progress=True, device=None, ar_path=None, nar_path=None) -> Mars5TTS:
     """ Load mars5 english model on `device`, optionally show `progress`. """
