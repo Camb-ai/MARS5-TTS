@@ -56,7 +56,7 @@ def ar_generate(texttok: RegexTokenizer, speechtok: CodebookTokenizer,
         # Initialise kv cache
         cache_window = min(codeclm.ar.args.sliding_window, x_inp.shape[-1] + max_len)
         cache = RotatingBufferCache(codeclm.ar.args.n_layers, bs, cache_window, codeclm.ar.args.n_kv_heads, codeclm.ar.args.head_dim)
-        cache.to(device=x_inp.device, dtype=torch.float16)
+        cache.to(device=x_inp.device, dtype=torch.float16 if fp16 else torch.float32)
 
     counter = 0
     while x_inp.shape[-1] < max_len:

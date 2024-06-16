@@ -188,7 +188,8 @@ class Mars5TTS(nn.Module):
 
         ar_codes = ar_generate(self.texttok, self.speechtok, self.codeclm, 
                                prompt, spk_ref_codec, first_codec_idx, 
-                               max_len=cfg.generate_max_len_override if cfg.generate_max_len_override > 1 else 2000, 
+                               max_len=cfg.generate_max_len_override if cfg.generate_max_len_override > 1 else 2000,
+                               fp16=True if torch.cuda.is_available() else False,
                                temperature=cfg.temperature, topk=cfg.top_k, top_p=cfg.top_p, typical_p=cfg.typical_p,
                                alpha_frequency=cfg.freq_penalty, alpha_presence=cfg.presence_penalty, penalty_window=cfg.rep_penalty_window,
                                eos_penalty_decay=cfg.eos_penalty_decay, eos_penalty_factor=cfg.eos_penalty_factor,
