@@ -16,7 +16,7 @@ from mars5.diffuser import MultinomialDiffusion, DSH, perform_simple_inference
 from mars5.minbpe.regex import RegexTokenizer, GPT4_SPLIT_PATTERN
 from mars5.minbpe.codebook import CodebookTokenizer
 from mars5.ar_generate import ar_generate
-from mars5.utils import nuke_weight_norm
+from mars5.utils import nuke_weight_norm, construct_padding_mask
 from mars5.trim import trim
 import tempfile
 import logging
@@ -125,6 +125,33 @@ class Mars5TTS(nn.Module):
         bandwidth_id = torch.tensor([1], device=self.device)  # 6 kbps
         wav_diffusion = self.vocos.decode(features, bandwidth_id=bandwidth_id)
         return wav_diffusion.cpu().squeeze()[None]
+
+    @torch.inference_mode
+    def get_speaker_embedding(self, ref_audio: Tensor) -> Tensor:
+        """ Given `ref_audio` (bs, T) audio tensor, compute the implicit speakre embedding of shape (bs, dim). """
+        if ref_audio.dim() == 1: ref_audio = ref_audio[None]
+        spk_reference = self.codec.encode(ref_audio[None].to(self.device))[0][0]
+        spk_reference = spk_reference.permute(0, 2, 1)
+        bs = spk_reference.shape[0]
+        if bs != 1:
+            raise AssertionError(f"Speaker embedding extraction only implemented using for bs=1 currently.")
+        spk_seq = self.codeclm.ref_chunked_emb(spk_reference) # (bs, sl, dim)
+        spk_ref_emb = self.codeclm.spk_identity_emb.weight[None].expand(bs, -1, -1) # (bs, 1, dim)
+
+        spk_seq = torch.cat([spk_ref_emb, spk_seq], dim=1) # (bs, 1+sl, dim)
+        # add pos encoding
+        spk_seq = self.codeclm.pos_embedding(spk_seq)
+        # codebook goes from indices 0->1023, padding is idx 1024 (the 1025th entry)
+        src_key_padding_mask = construct_padding_mask(spk_reference[:, :, 0], 1024) 
+        src_key_padding_mask = torch.cat((
+                                            # append a zero here since we DO want to attend to initial position.
+                                            torch.zeros(src_key_padding_mask.shape[0], 1, dtype=bool, device=src_key_padding_mask.device), 
+                                            src_key_padding_mask
+                                            ), 
+                                            dim=1)
+        # pass through transformer
+        res = self.codeclm.spk_encoder(spk_seq, is_causal=False, src_key_padding_mask=src_key_padding_mask)[:, :1] # select first element -> now (bs, 1, dim).
+        return res.squeeze(1)
 
     @torch.inference_mode
     def tts(self, text: str, ref_audio: Tensor, ref_transcript: Optional[str] = None, 
