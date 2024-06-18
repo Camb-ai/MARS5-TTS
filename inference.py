@@ -71,8 +71,13 @@ class Mars5TTS(nn.Module):
         super().__init__()
 
         if device is None:
-            device = 'cuda' if torch.cuda.is_available() else 'cpu'
+            device = "cpu"
+            if torch.cuda.is_available():
+                device = "cuda"
+            elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+                device = "mps"
         self.device = torch.device(device)
+        print(f"using device: {device}")
         
         self.codec = EncodecModel.encodec_model_24khz().to(device).eval()
         self.codec.set_target_bandwidth(6.0)

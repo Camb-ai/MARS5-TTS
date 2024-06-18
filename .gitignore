@@ -1,2 +1,4 @@
 **/__pycache__/
 example.flac
+pretrained
+.DS_Store

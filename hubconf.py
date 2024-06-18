@@ -11,7 +11,12 @@ nar_url = "https://github.com/Camb-ai/mars5-tts/releases/download/v0.2/mars5_en_
 
 def mars5_english(pretrained=True, progress=True, device=None, ar_path=None, nar_path=None) -> Mars5TTS:
     """ Load mars5 english model on `device`, optionally show `progress`. """
-    if device is None: device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    if device is None:
+        device = "cpu"
+        if torch.cuda.is_available():
+            device = "cuda"
+        elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+            device = "mps"
     logging.info(f"Using device: {device}")
     if pretrained == False: raise AssertionError('Only pretrained model currently supported.')
     logging.info("Loading AR checkpoint...")
