@@ -3,7 +3,7 @@ from torch import Tensor
 import torch.nn as nn
 import torch.nn.functional as F
 import logging
-from typing import Optional
+from typing import Optional, Dict, Type, Union, List, Tuple
 from pathlib import Path
 from dataclasses import dataclass
 import os
@@ -18,6 +18,8 @@ from mars5.minbpe.codebook import CodebookTokenizer
 from mars5.ar_generate import ar_generate
 from mars5.utils import nuke_weight_norm, construct_padding_mask
 from mars5.trim import trim
+from huggingface_hub import ModelHubMixin, hf_hub_download
+from safetensors import safe_open
 import tempfile
 import logging
 
@@ -64,9 +66,7 @@ class InferenceConfig():
     beam_width: int = 1 # only beam width of 1 is currently supported
     ref_audio_pad: float = 0
 
-
-class Mars5TTS(nn.Module):
-
+class Mars5TTS(nn.Module, ModelHubMixin):
     def __init__(self, ar_ckpt, nar_ckpt, device: str = None) -> None:
         super().__init__()
 
@@ -81,11 +81,14 @@ class Mars5TTS(nn.Module):
         self.texttok = RegexTokenizer(GPT4_SPLIT_PATTERN)
         texttok_data = io.BytesIO(ar_ckpt['vocab']['texttok.model'].encode('utf-8'))
         self.texttok.load(texttok_data)
+        texttok_data.close()
 
         # save and load speech tokenizer
         self.speechtok = CodebookTokenizer(GPT4_SPLIT_PATTERN)
         speechtok_data = io.BytesIO(ar_ckpt['vocab']['speechtok.model'].encode('utf-8'))
         self.speechtok.load(speechtok_data)
+        speechtok_data.close()
+        
         # keep track of tokenization things. 
         self.n_vocab = len(self.texttok.vocab) + len(self.speechtok.vocab)
         self.n_text_vocab = len(self.texttok.vocab) + 1 
@@ -108,7 +111,44 @@ class Mars5TTS(nn.Module):
         self.vocos = Vocos.from_pretrained("charactr/vocos-encodec-24khz").to(self.device).eval()
         nuke_weight_norm(self.codec)
         nuke_weight_norm(self.vocos)
-        
+
+    @classmethod
+    def _from_pretrained(
+        cls: Type["Mars5TTS"],
+        *,
+        model_id: str,
+        revision: Optional[str],
+        cache_dir: Optional[Union[str, Path]],
+        force_download: bool,
+        proxies: Optional[Dict],
+        local_files_only: bool,
+        token: Optional[Union[str, bool]],
+        device: str = None,
+        **model_kwargs,
+    ) -> "Mars5TTS":
+        # Download files from Hub
+        print(f">>>>> Downloading AR model")
+        ar_ckpt_path = hf_hub_download(repo_id=model_id, filename="mars5_ar.safetensors", revision=revision, cache_dir=cache_dir, force_download=force_download, proxies=proxies, local_files_only=local_files_only, token=token)
+        print(f">>>>> Downloading NAR model")
+        nar_ckpt_path = hf_hub_download(repo_id=model_id, filename="mars5_nar.safetensors", revision=revision, cache_dir=cache_dir, force_download=force_download, proxies=proxies, local_files_only=local_files_only, token=token)
+
+        ar_ckpt = {}
+        with safe_open(ar_ckpt_path, framework='pt', device='cpu') as f:
+            metadata = f.metadata()
+            ar_ckpt['vocab'] = {'texttok.model': metadata['texttok.model'], 'speechtok.model': metadata['speechtok.model']}
+            ar_ckpt['model'] = {}
+            for k in f.keys(): ar_ckpt['model'][k] = f.get_tensor(k)
+        nar_ckpt = {}
+        with safe_open(nar_ckpt_path, framework='pt', device='cpu') as f:
+            metadata = f.metadata()
+            nar_ckpt['vocab'] = {'texttok.model': metadata['texttok.model'], 'speechtok.model': metadata['speechtok.model']}
+            nar_ckpt['model'] = {}
+            for k in f.keys(): nar_ckpt['model'][k] = f.get_tensor(k)
+
+
+        # Init
+        return cls(ar_ckpt=ar_ckpt, nar_ckpt=nar_ckpt, device=device)
+
     @torch.inference_mode
     def vocode(self, tokens: Tensor) -> Tensor:
         """ Vocodes tokens of shape (seq_len, n_q) """
@@ -207,7 +247,6 @@ class Mars5TTS(nn.Module):
         first_codec_idx = prompt.shape[-1] - n_speech_inp + 1
 
         # ---> perform AR code generation
-
         logging.debug(f"Raw acoustic prompt length: {raw_prompt_acoustic_len}")
 
         ar_codes = ar_generate(self.texttok, self.speechtok, self.codeclm, 
@@ -236,7 +275,6 @@ class Mars5TTS(nn.Module):
         x_padding_mask = torch.zeros((1, _x.shape[1]), dtype=torch.bool, device=_x.device)
 
         # ---> perform DDPM NAR inference
-
         T = self.default_T
         diff = MultinomialDiffusion(self.diffusion_n_classes, timesteps=T, device=self.device)
 
