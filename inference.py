@@ -3,11 +3,11 @@ from torch import Tensor
 import torch.nn as nn
 import torch.nn.functional as F
 import logging
-import json
 from typing import Optional
 from pathlib import Path
 from dataclasses import dataclass
 import os
+import io
 
 from mars5.model import CodecLM, ResidualTransformer
 from vocos import Vocos
@@ -79,16 +79,13 @@ class Mars5TTS(nn.Module):
 
         # save and load text tokenize
         self.texttok = RegexTokenizer(GPT4_SPLIT_PATTERN)
-        tfn = tempfile.mkstemp(suffix='texttok.model')[1]
-        Path(tfn).write_text(ar_ckpt['vocab']['texttok.model'])
-        self.texttok.load(tfn)
-        os.remove(tfn)
+        texttok_data = io.BytesIO(ar_ckpt['vocab']['texttok.model'].encode('utf-8'))
+        self.texttok.load(texttok_data)
+
         # save and load speech tokenizer
-        sfn = tempfile.mkstemp(suffix='speechtok.model')[1]
         self.speechtok = CodebookTokenizer(GPT4_SPLIT_PATTERN)
-        Path(sfn).write_text(ar_ckpt['vocab']['speechtok.model'])
-        self.speechtok.load(sfn)
-        os.remove(sfn)
+        speechtok_data = io.BytesIO(ar_ckpt['vocab']['speechtok.model'].encode('utf-8'))
+        self.speechtok.load(speechtok_data)
         # keep track of tokenization things. 
         self.n_vocab = len(self.texttok.vocab) + len(self.speechtok.vocab)
         self.n_text_vocab = len(self.texttok.vocab) + 1 

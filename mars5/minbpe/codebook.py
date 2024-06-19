@@ -7,6 +7,7 @@ Unlike RegexTokenizer:
 
 import regex as re
 from .base import Tokenizer, get_stats, merge
+import io
 
 
 class CodebookTokenizer(Tokenizer):
@@ -172,13 +173,18 @@ class CodebookTokenizer(Tokenizer):
 
     def load(self, model_file):
         """Inverse of save() but only for the model file"""
-        model_file = str(model_file)
-        assert model_file.endswith(".model")
+
+        if type(model_file) == io.BytesIO: 
+            open_fn = io.TextIOWrapper
+        else: 
+            open_fn = open
+            model_file = str(model_file)
+            assert model_file.endswith(".model")
         # read the model file
         merges = {}
         special_tokens = {}
         idx = self.codebook_size
-        with open(model_file, 'r', encoding="utf-8") as f:
+        with open_fn(model_file, encoding="utf-8") as f:
             # read the version
             version = f.readline().strip()
             assert version == "minbpe v1"
