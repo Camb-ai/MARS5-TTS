@@ -72,9 +72,10 @@ We use `torch.hub` to make loading the model easy -- no cloning of the repo need
     - Librosa
     - Vocos
     - Encodec
+    - safetensors
 
 ```bash
-pip install --upgrade torch torchaudio librosa vocos encodec
+pip install --upgrade torch torchaudio librosa vocos encodec safetensors
 ```
 
 2. **Load models**: load the MARS5 AR and NAR model from torch hub:
@@ -133,6 +134,14 @@ The checkpoints for MARS5 are provided under the releases tab of this github rep
 - AR fp16 checkpoint [~750M parameters], along with config embedded in the checkpoint.
 - NAR fp16 checkpoint [~450M parameters], along with config embedded in the checkpoint.
 - The byte-pair encoding tokenizer used for the L0 encodec codes and the English text is embedded in each checkpoint under the `'vocab'` key, and follows roughly the same format of a saved minbpe tokenizer.
+
+The checkpoints are provided as both pytorch `.pt` checkpoints, and safetensors `.safetensors` checkpoints. By default, the `torch.hub.load()` loads the safetensors version, but you can specify which version of checkpoint you prefer with the `ckpt_format='safetensors'` or `ckpt_format='pt'` argument the in `torch.hub.load()` call. E.g. to force safetensors format:
+
+`torch.hub.load('Camb-ai/mars5-tts', 'mars5_english', ckpt_format='safetensors')`
+
+Or to force pytorch `.pt` format when loading the checkpoints:
+
+`torch.hub.load('Camb-ai/mars5-tts', 'mars5_english', ckpt_format='pt')`
 
 **Hardware Requirements**:
 
