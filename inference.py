@@ -81,13 +81,11 @@ class Mars5TTS(nn.Module, ModelHubMixin):
         self.texttok = RegexTokenizer(GPT4_SPLIT_PATTERN)
         texttok_data = io.BytesIO(ar_ckpt['vocab']['texttok.model'].encode('utf-8'))
         self.texttok.load(texttok_data)
-        texttok_data.close()
 
         # save and load speech tokenizer
         self.speechtok = CodebookTokenizer(GPT4_SPLIT_PATTERN)
         speechtok_data = io.BytesIO(ar_ckpt['vocab']['speechtok.model'].encode('utf-8'))
         self.speechtok.load(speechtok_data)
-        speechtok_data.close()
         
         # keep track of tokenization things. 
         self.n_vocab = len(self.texttok.vocab) + len(self.speechtok.vocab)
