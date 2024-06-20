@@ -73,7 +73,6 @@ We use `torch.hub` to make loading the model easy -- no cloning of the repo need
     - Vocos
     - Encodec
     - safetensors
-    - huggingface_hub (optional)
 
 ```bash
 pip install --upgrade torch torchaudio librosa vocos encodec safetensors
