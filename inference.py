@@ -123,9 +123,9 @@ class Mars5TTS(nn.Module, ModelHubMixin):
         **model_kwargs,
     ) -> "Mars5TTS":
         # Download files from Hub
-        print(f">>>>> Downloading AR model")
+        logging.info(f">>>>> Downloading AR model")
         ar_ckpt_path = hf_hub_download(repo_id=model_id, filename="mars5_ar.safetensors", revision=revision, cache_dir=cache_dir, force_download=force_download, proxies=proxies, local_files_only=local_files_only, token=token)
-        print(f">>>>> Downloading NAR model")
+        logging.info(f">>>>> Downloading NAR model")
         nar_ckpt_path = hf_hub_download(repo_id=model_id, filename="mars5_nar.safetensors", revision=revision, cache_dir=cache_dir, force_download=force_download, proxies=proxies, local_files_only=local_files_only, token=token)
 
         ar_ckpt = {}
