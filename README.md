@@ -88,7 +88,7 @@ mars5, config_class = torch.hub.load('Camb-ai/mars5-tts', 'mars5_english', trust
 # The `config_class` contains tunable inference config settings like temperature.
 ```
 
-(Optional) Load Model from huggingface (make sure huggingface_hub is installed)
+(Optional) Load Model from huggingface (make sure repository is cloned)
 ```python
 from inference import Mars5TTS, InferenceConfig as config_class
 import torch, librosa
