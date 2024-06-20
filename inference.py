@@ -18,14 +18,8 @@ from mars5.ar_generate import ar_generate
 from mars5.utils import nuke_weight_norm, construct_padding_mask
 from mars5.trim import trim
 from safetensors import safe_open
+from huggingface_hub import ModelHubMixin, hf_hub_download
 import logging
-
-try:
-    from huggingface_hub import ModelHubMixin, hf_hub_download
-except ImportError:
-    hf_hub_download = lambda *args, **kwargs: None
-    class ModelHubMixin: pass
-
 
 @dataclass
 class InferenceConfig():
