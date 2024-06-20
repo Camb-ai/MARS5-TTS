@@ -1,4 +1,4 @@
-dependencies = ['torch', 'torchaudio', 'numpy', 'vocos', 'safetensors', 'huggingface_hub']
+dependencies = ['torch', 'torchaudio', 'numpy', 'vocos', 'safetensors']
 
 import logging
 import os
