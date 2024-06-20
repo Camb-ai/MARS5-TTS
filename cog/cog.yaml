@@ -1,0 +1,24 @@
+
+build:
+  gpu: true
+  system_packages:
+    - "ffmpeg"
+    - "libavcodec-dev"
+    - "sox"
+
+  python_version: "3.10"
+
+  python_packages:
+    - numpy
+    - torch
+    - torchaudio
+    - torchvision
+    - transformers
+    - regex
+    - librosa
+    - vocos
+    - encodec
+  run:
+    - python -c "import torch; torch.hub.load('Camb-ai/mars5-tts', 'mars5_english', trust_repo=True)"
+    - pip install pyupload
+predict: "predict.py:Predictor"
