@@ -87,6 +87,16 @@ mars5, config_class = torch.hub.load('Camb-ai/mars5-tts', 'mars5_english', trust
 # The `mars5` contains the AR and NAR model, as well as inference code.
 # The `config_class` contains tunable inference config settings like temperature.
 ```
+
+(Optional) Load Model from huggingface (make sure repository is cloned)
+```python
+from inference import Mars5TTS, InferenceConfig as config_class
+import torch, librosa
+
+mars5 = Mars5TTS.from_pretrained("CAMB-AI/MARS5-TTS")
+```
+
+
 3. **Pick a reference** and optionally its transcript:
 
 ```python
