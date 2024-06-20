@@ -3,10 +3,9 @@ from torch import Tensor
 import torch.nn as nn
 import torch.nn.functional as F
 import logging
-from typing import Optional, Dict, Type, Union, List, Tuple
+from typing import Optional, Dict, Type, Union
 from pathlib import Path
 from dataclasses import dataclass
-import os
 import io
 
 from mars5.model import CodecLM, ResidualTransformer
@@ -18,10 +17,14 @@ from mars5.minbpe.codebook import CodebookTokenizer
 from mars5.ar_generate import ar_generate
 from mars5.utils import nuke_weight_norm, construct_padding_mask
 from mars5.trim import trim
-from huggingface_hub import ModelHubMixin, hf_hub_download
 from safetensors import safe_open
-import tempfile
 import logging
+
+try:
+    from huggingface_hub import ModelHubMixin, hf_hub_download
+except ImportError:
+    hf_hub_download = lambda *args, **kwargs: None
+    class ModelHubMixin: pass
 
 
 @dataclass

@@ -6,5 +6,4 @@ regex
 librosa
 vocos
 encodec
-huggingface_hub
 safetensors
