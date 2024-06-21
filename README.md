@@ -134,6 +134,24 @@ _Some tips for best quality:_
 - Use deep clone and provide an accurate transcript for the reference.
 - Use proper punctuation -- the model can be guided and made better or worse with proper use of punctuation and capitalization.
 
+## Or Use Docker
+
+**Pull from DockerHub**
+
+You can directly pull the docker image from our [DockerHub page](https://hub.docker.com/r/cambai/mars5ttsimage).
+
+
+**Build On Your Own**
+
+You can build a custom image from the provided Dockerfile in this repo by running the following command.
+
+```bash
+cd MARS5-TTS
+docker build -t mars5ttsimage ./docker
+```
+
+
+*Note: This image should be used as a base image on top of which you can add your custom inference script in a Dockerfile or docker-compose. Images that directly generate output will be added to Docker Hub and as Dockerfiles in this repo soon*
 
 ## Model Details
 
