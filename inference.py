@@ -61,7 +61,7 @@ class InferenceConfig():
     deep_clone: bool = True
 
     use_kv_cache: bool = True
-    trim_db: float = 27
+    trim_db: float = 22
     beam_width: int = 1 # only beam width of 1 is currently supported
     ref_audio_pad: float = 0
 
@@ -71,7 +71,7 @@ class InferenceConfig():
 
     # If True, we use the generated audio from the previous chunk as the reference
     # If False, the reference provided by the user is always used.
-    sliding_window_continuous: bool = True
+    sliding_window_reuse_reference: bool = False
 
 class Mars5TTS(nn.Module, ModelHubMixin):
     def __init__(self, ar_ckpt, nar_ckpt, device: str = None) -> None:
@@ -198,7 +198,7 @@ class Mars5TTS(nn.Module, ModelHubMixin):
         return res.squeeze(1)
     
     def tts(self, text: str, ref_audio: Tensor, ref_transcript: Optional[str] = None, 
-            cfg: Optional[InferenceConfig] = InferenceConfig()) -> Tensor:
+            cfg: Optional[InferenceConfig] = InferenceConfig()):
 
         sentences = nltk.tokenize.sent_tokenize(text)
         text_chunks = []
@@ -221,12 +221,12 @@ class Mars5TTS(nn.Module, ModelHubMixin):
         audios = [ref_audio]
         ar_codes = []
 
-        for ref_chunk, current_chunk in zip(text_chunks, text_chunks[1:]):
+        for ref_chunk_text, current_chunk_text in zip(text_chunks, text_chunks[1:]):
             ref_chunk_audio = audios[-1]
-            current_chunk_ar_codes, current_chunk_audio = self.custom_tts_one_chunk(
-                text=current_chunk,
-                ref_audio=ref_chunk_audio if cfg.sliding_window_continuous else ref_audio,
-                ref_transcript=ref_chunk if cfg.sliding_window_continuous else ref_transcript,
+            current_chunk_ar_codes, current_chunk_audio = self.tts_chunk(
+                text=current_chunk_text,
+                ref_audio=ref_audio if cfg.sliding_window_reuse_reference else ref_chunk_audio,
+                ref_transcript=ref_transcript if cfg.sliding_window_reuse_reference else ref_chunk_text,
                 cfg=cfg,
             )
             audios.append(current_chunk_audio)
@@ -237,7 +237,7 @@ class Mars5TTS(nn.Module, ModelHubMixin):
 
     @torch.inference_mode
     def tts_chunk(self, text: str, ref_audio: Tensor, ref_transcript: Optional[str] = None, 
-            cfg: Optional[InferenceConfig] = InferenceConfig()) -> Tensor:
+            cfg: Optional[InferenceConfig] = InferenceConfig()):
         """ Perform TTS for `text`, given a reference audio `ref_audio` (of shape [sequence_length,], sampled at 24kHz) 
         which has an associated `ref_transcript`. Perform inference using the inference 
         config given by `cfg`, which controls the temperature, top_p, etc...
