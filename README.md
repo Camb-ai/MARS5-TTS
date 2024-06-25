@@ -173,7 +173,7 @@ Or to force pytorch `.pt` format when loading the checkpoints:
 
 **Hardware Requirements**:
 
-You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters. In general, at least **20GB of GPU VRAM** is needed to run the model on GPU (we plan to further optimize this in the future).
+You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters.
 
 If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our [API](https://docs.camb.ai/). If you need some extra credits to test it for your use case, feel free to reach out to `help@camb.ai`.
 
