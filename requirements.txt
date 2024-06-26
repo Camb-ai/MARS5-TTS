@@ -1,7 +1,7 @@
 torch
 torchvision
 torchaudio
-numpy
+numpy==1.26.4
 regex
 librosa
 vocos
