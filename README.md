@@ -73,9 +73,10 @@ We use `torch.hub` to make loading the model easy -- no cloning of the repo need
     - Vocos
     - Encodec
     - safetensors
+    - regex
 
 ```bash
-pip install --upgrade torch torchaudio librosa vocos encodec safetensors
+pip install --upgrade torch torchaudio librosa vocos encodec safetensors regex
 ```
 
 2. **Load models**: load the MARS5 AR and NAR model from torch hub:
