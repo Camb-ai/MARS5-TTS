@@ -1,3 +1,5 @@
+dependencies = ['torch', 'torchaudio', 'numpy', 'vocos', 'safetensors']
+
 import logging
 import os
 from pathlib import Path
@@ -5,7 +7,6 @@ from safetensors import safe_open
 import torch
 from inference import Mars5TTS, InferenceConfig
 
-dependencies = ['torch', 'torchaudio', 'numpy', 'vocos', 'safetensors']
 
 # Centralized checkpoint URLs for easy management and updates
 CHECKPOINT_URLS = {
@@ -42,7 +43,11 @@ def _load_safetensors_ckpt(file_path):
     return ckpt
 
 def mars5_english(pretrained=True, progress=True, device=None, ckpt_format='safetensors', ar_path=None, nar_path=None):
-    """ Load Mars5 English model on `device`, optionally show `progress`. """
+    
+    # Load Mars5 English model on `device`, optionally showing progress.
+    # This function also handles user-provided paths for model checkpoints,
+    # supporting both .pt and .safetensors formats.
+    
     if device is None:
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
     logging.info(f"Using device: {device}")
@@ -50,8 +55,26 @@ def mars5_english(pretrained=True, progress=True, device=None, ckpt_format='safe
     if not pretrained:
         raise ValueError('Only pretrained models are currently supported.')
 
-    ar_ckpt = load_checkpoint(CHECKPOINT_URLS[f'ar_{ckpt_format}'], progress, ckpt_format) if ar_path is None else torch.load(ar_path, map_location='cpu')
-    nar_ckpt = load_checkpoint(CHECKPOINT_URLS[f'nar_{ckpt_format}'], progress, ckpt_format) if nar_path is None else torch.load(nar_path, map_location='cpu')
+    # Determine the format of the checkpoint based on the file extension if paths are provided
+    if ar_path is not None:
+        if ar_path.endswith('.pt'):
+            ar_ckpt = load_checkpoint(None, progress, 'pt', ar_path)
+        elif ar_path.endswith('.safetensors'):
+            ar_ckpt = load_checkpoint(None, progress, 'safetensors', ar_path)
+        else:
+            raise NotImplementedError("Unsupported file format for ar_path. Please provide a .pt or .safetensors file.")
+    else:
+        ar_ckpt = load_checkpoint(CHECKPOINT_URLS[f'ar_{ckpt_format}'], progress, ckpt_format)
+
+    if nar_path is not None:
+        if nar_path.endswith('.pt'):
+            nar_ckpt = load_checkpoint(None, progress, 'pt', nar_path)
+        elif nar_path.endswith('.safetensors'):
+            nar_ckpt = load_checkpoint(None, progress, 'safetensors', nar_path)
+        else:
+            raise NotImplementedError("Unsupported file format for nar_path. Please provide a .pt or .safetensors file.")
+    else:
+        nar_ckpt = load_checkpoint(CHECKPOINT_URLS[f'nar_{ckpt_format}'], progress, ckpt_format)
 
     logging.info("Initializing models...")
     return Mars5TTS(ar_ckpt, nar_ckpt, device=device), InferenceConfig
