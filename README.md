@@ -217,7 +217,7 @@ The preferred way to contribute to our repo is to fork the [master repository](h
 
 ## License
 
-We are open-sourcing MARS5 in English under GNU AGPL 3.0, but you can request to use it under a different license by emailing help@camb.ai.
+We are open-sourcing MARS5 in English under GNU AGPL 3.0. For commercial inquiries or to license the closed source version of MARS, please email help@camb.ai
 
 ## Join Our Team
 
