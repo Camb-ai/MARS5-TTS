@@ -17,8 +17,8 @@
 
 </div>
 
-
-
+# Updates
+July 5, 2024: Latest AR checkpoint released: higher stability of output. Very big update coming soon!
 
 
 # Approach
