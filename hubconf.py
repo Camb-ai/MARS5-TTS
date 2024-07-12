@@ -10,9 +10,9 @@ from inference import Mars5TTS, InferenceConfig
 
 # Centralized checkpoint URLs for easy management and updates
 CHECKPOINT_URLS = {
-    "ar": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.3/mars5_en_checkpoints_ar-2000000.pt",
+    "ar": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.4/mars5_en_checkpoints_ar-3000000.pt",
     "nar": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.3/mars5_en_checkpoints_nar-1980000.pt",
-    "ar_sf": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.3/mars5_en_checkpoints_ar-2000000.safetensors",
+    "ar_sf": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.4/mars5_en_checkpoints_ar-3000000.safetensors",
     "nar_sf": "https://github.com/Camb-ai/MARS5-TTS/releases/download/v0.3/mars5_en_checkpoints_nar-1980000.safetensors"
 }
 
@@ -42,11 +42,14 @@ def _load_safetensors_ckpt(file_path):
         ckpt['model'] = {k: f.get_tensor(k) for k in f.keys()}
     return ckpt
 
+    
+# Load Mars5 English model on `device`, optionally showing progress.
+# This function also handles user-provided path for model checkpoints,
+# supporting both .pt and .safetensors formats.
+
 def mars5_english(pretrained=True, progress=True, device=None, ckpt_format='safetensors', ar_path=None, nar_path=None):
     
-    # Load Mars5 English model on `device`, optionally showing progress.
-    # This function also handles user-provided paths for model checkpoints,
-    # supporting both .pt and .safetensors formats.
+   
     
     if device is None:
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -78,3 +81,4 @@ def mars5_english(pretrained=True, progress=True, device=None, ckpt_format='safe
 
     logging.info("Initializing models...")
     return Mars5TTS(ar_ckpt, nar_ckpt, device=device), InferenceConfig
+
