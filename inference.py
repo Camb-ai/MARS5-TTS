@@ -26,12 +26,18 @@ class InferenceConfig():
     """ The defaults configuration variables for TTS inference. """
 
     ## >>>> AR CONFIG
+    # temperature influences probability distribution of logits
+    # How to set this variable: high temperatures (T>1) favour less probable outputs while low temperatures reduce randomness
     temperature: float = 0.7
+
+    # Used for sampling - Keeps tokens with the highest probabilities until a certain number (top_k) is reached
     top_k: int = 200 # 0 disables it
-    top_p: float = 0.2
+    # Used for sampling - keep the top tokens with cumulative probability >= top_p
+    top_p: float = 0.2 # 1.0 disables it
+
     typical_p: float = 1.0
-    freq_penalty: float = 3
-    presence_penalty: float = 0.4
+    freq_penalty: float = 3 # increasing it would penalize the model more for repetitions
+    presence_penalty: float = 0.4 # increasing it would increase token diversity
     rep_penalty_window: int = 80 # how far in the past to consider when penalizing repetitions. Equates to 5s
 
     eos_penalty_decay: float = 0.5 # how much to penalize <eos>
@@ -58,9 +64,16 @@ class InferenceConfig():
     # Cons: requires reference transcript, and inference takes a bit longer.
     deep_clone: bool = True
 
+    # kv caching helps with optimizing inference speed.
+    # disabling/enabling kv caching won't affect output quality
     use_kv_cache: bool = True
+
+
+    # Leading and trailing silences will be trimmed from final output
+    # Trim_db is the threshold (in decibels) below reference to consider as silence
     trim_db: float = 27
     beam_width: int = 1 # only beam width of 1 is currently supported
+
     ref_audio_pad: float = 0
 
 class Mars5TTS(nn.Module, ModelHubMixin):
