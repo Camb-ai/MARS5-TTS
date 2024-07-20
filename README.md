@@ -6,7 +6,7 @@
    <h3>
    <a href="https://www.loom.com/share/a6e7c6658f9f4b09a696926a98dd6fcc"> Why MARS5? </a> |
    <a href="https://github.com/Camb-ai/MARS5-TTS/blob/master/docs/architecture.md"> Model Architecture </a> |
-   <a href="https://179c54d254f7.ngrok.app/"> Samples </a> |
+   <a href="https://6b1a3a8e53ae.ngrok.app/"> Samples </a> |
    <a href="https://camb.ai/"> Camb AI Website </a></h3>
 
    [![GitHub Repo stars](https://img.shields.io/github/stars/Camb-ai/MARS5-TTS?style=social)](https://github.com/Camb-ai/MARS5-TTS/stargazers)
@@ -17,8 +17,8 @@
 
 </div>
 
-
-
+# Updates
+<> July 5, 2024: Latest AR checkpoint released: higher stability of output. Very big update coming soon!
 
 
 # Approach
@@ -55,7 +55,7 @@ For more details on this and other performance and model details, please see the
 - Technical details and architecture: [in the docs folder](docs/architecture.md)
 - Colab quickstart: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Camb-ai/mars5-tts/blob/master/mars5_demo.ipynb)
 - Sample page with a few hard prosodic samples: [https://camb-ai.github.io/MARS5-TTS/](https://camb-ai.github.io/MARS5-TTS/)
-- Online demo: [here](https://179c54d254f7.ngrok.app/)
+- Online demo: [here](https://6b1a3a8e53ae.ngrok.app/)
 
 
 ## Quickstart
@@ -73,9 +73,10 @@ We use `torch.hub` to make loading the model easy -- no cloning of the repo need
     - Vocos
     - Encodec
     - safetensors
+    - regex
 
 ```bash
-pip install --upgrade torch torchaudio librosa vocos encodec safetensors
+pip install --upgrade torch torchaudio librosa vocos encodec safetensors regex
 ```
 
 2. **Load models**: load the MARS5 AR and NAR model from torch hub:
@@ -134,6 +135,24 @@ _Some tips for best quality:_
 - Use deep clone and provide an accurate transcript for the reference.
 - Use proper punctuation -- the model can be guided and made better or worse with proper use of punctuation and capitalization.
 
+## Or Use Docker
+
+**Pull from DockerHub**
+
+You can directly pull the docker image from our [DockerHub page](https://hub.docker.com/r/cambai/mars5ttsimage).
+
+
+**Build On Your Own**
+
+You can build a custom image from the provided Dockerfile in this repo by running the following command.
+
+```bash
+cd MARS5-TTS
+docker build -t mars5ttsimage ./docker
+```
+
+
+*Note: This image should be used as a base image on top of which you can add your custom inference script in a Dockerfile or docker-compose. Images that directly generate output will be added to Docker Hub and as Dockerfiles in this repo soon*
 
 ## Model Details
 
@@ -155,7 +174,7 @@ Or to force pytorch `.pt` format when loading the checkpoints:
 
 **Hardware Requirements**:
 
-You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters. In general, at least **20GB of GPU VRAM** is needed to run the model on GPU (we plan to further optimize this in the future).
+You must be able to store at least 750M+450M params on GPU, and do inference with 750M of active parameters.
 
 If you do not have the necessary hardware requirements and just want to use MARS5 in your applications, you can use it via our [API](https://docs.camb.ai/). If you need some extra credits to test it for your use case, feel free to reach out to `help@camb.ai`.
 
@@ -198,7 +217,7 @@ The preferred way to contribute to our repo is to fork the [master repository](h
 
 ## License
 
-We are open-sourcing MARS5 in English under GNU AGPL 3.0, but you can request to use it under a different license by emailing help@camb.ai.
+We are open-sourcing MARS5 in English under GNU AGPL 3.0. For commercial inquiries or to license the closed source version of MARS, please email help@camb.ai
 
 ## Join Our Team
 
