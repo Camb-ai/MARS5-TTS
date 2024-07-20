@@ -1,6 +1,7 @@
 torch
 torchvision
 torchaudio
+nltk
 numpy<2
 regex
 librosa
