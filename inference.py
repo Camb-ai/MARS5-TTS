@@ -117,7 +117,7 @@ class Mars5TTS(nn.Module, ModelHubMixin):
         nuke_weight_norm(self.vocos)
 
         # Download `punkt` for sentence segmentation
-        nltk.download('punkt', quiet=True)
+        nltk.download('punkt')
 
     @classmethod
     def _from_pretrained(
