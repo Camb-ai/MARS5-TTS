@@ -232,6 +232,10 @@ Join CAMB.AI community on [Forum](https://github.com/Camb-ai/MARS5-TTS/discussio
 [Discord](https://discord.gg/FFQNCSKSXX) to share any suggestions, feedback, or questions with our team.
 
 
+## Support Camb.ai on Ko-fi ❤️!
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/cambai)
+
+
 ## Acknowledgements
 
 Parts of code for this project are adapted from the following repositories -- please make sure to check them out! Thank you to the authors of:
