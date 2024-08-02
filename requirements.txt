@@ -1,7 +1,8 @@
 torch
 torchvision
 torchaudio
-numpy==1.26.4
+nltk
+numpy<2
 regex
 librosa
 vocos
