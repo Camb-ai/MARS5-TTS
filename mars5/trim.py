@@ -1,5 +1,5 @@
 """ Custom port of librosa trim code, to remove numba dependency. 
-This allows us to use librosa.trim effect without the librosa or numba dependancy.
+This allows us to use librosa.trim effect without the librosa or numba dependency.
 
 All code below adapted from librosa open source github:
 """
